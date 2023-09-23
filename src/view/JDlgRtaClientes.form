@@ -24,47 +24,52 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTxtEndereco" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="RG" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jFmtRg" alignment="0" pref="200" max="32767" attributes="0"/>
-                          <Component id="pais" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jFmtCep" alignment="0" pref="200" max="32767" attributes="0"/>
-                          <Component id="jFmtCpf" alignment="0" pref="200" max="32767" attributes="0"/>
-                          <Component id="Cep" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="rua" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTxtRua" alignment="0" pref="200" max="32767" attributes="0"/>
-                          <Component id="endere" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="nome" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTxtNome" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cpf" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCboPais" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTxtBairro" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="bairro" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="comple" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTxtComple" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="genero" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="cell" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTxtCell" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="tell" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTxtTell" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="jtxtGenero" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="jTxtEstadoC" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCbocEstadoC" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="RG" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jFmtRg" alignment="0" pref="200" max="32767" attributes="0"/>
+                                  <Component id="pais" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jFmtCep" alignment="0" pref="200" max="32767" attributes="0"/>
+                                  <Component id="jFmtCpf" alignment="0" pref="200" max="32767" attributes="0"/>
+                                  <Component id="Cep" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rua" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTxtRua" alignment="0" pref="200" max="32767" attributes="0"/>
+                                  <Component id="nome" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTxtNome" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cpf" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCboPais" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTxtCodigo" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTxtEndereco" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="endere" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTxtBairro" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="bairro" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="comple" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTxtComple" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="genero" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTxtCell" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="tell" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTxtTell" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="jtxtGenero" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="jTxtEstadoC" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCboEstadoC" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="jTxtNumRua" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="endere1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="38" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -75,19 +80,48 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="nome" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTxtNome" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Component id="bairro" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTxtBairro" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTxtCodigo" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
+                      <Component id="comple" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTxtComple" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="genero" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jtxtGenero" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cell" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTxtCell" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tell" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTxtTell" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTxtEstadoC" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jCboEstadoC" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="endere" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTxtEndereco" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="nome" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTxtNome" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="cpf" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jFmtCpf" min="-2" max="-2" attributes="0"/>
@@ -108,33 +142,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTxtRua" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="comple" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTxtComple" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="genero" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jtxtGenero" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cell" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTxtCell" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tell" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTxtTell" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTxtEstadoC" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jCbocEstadoC" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="endere" min="-2" max="-2" attributes="0"/>
+              <Component id="endere1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTxtEndereco" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <Component id="jTxtNumRua" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -261,7 +274,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtTellActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jCbocEstadoC">
+    <Component class="javax.swing.JComboBox" name="jCboEstadoC">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
@@ -274,7 +287,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCbocEstadoCActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCboEstadoCActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -319,7 +332,7 @@
                   <Component id="jBtnCancelar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jBtnPesq" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="117" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -408,5 +421,22 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="codigo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtCodigo">
+    </Component>
+    <Component class="javax.swing.JLabel" name="endere1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="numero Rua"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtNumRua">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtNumRuaActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

@@ -1,5 +1,5 @@
 package bean;
-// Generated 16/09/2023 19:54:44 by Hibernate Tools 4.3.1
+// Generated 22/09/2023 23:51:17 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -32,7 +32,7 @@ public class RtaVendas  implements java.io.Serializable {
      private RtaUsuarios rtaUsuarios;
      private Date rtaData;
      private BigDecimal rtaValorTotal;
-     private Set rtaVendasprodutos = new HashSet(0);
+    
 
     public RtaVendas() {
     }
@@ -45,14 +45,7 @@ public class RtaVendas  implements java.io.Serializable {
         this.rtaData = rtaData;
         this.rtaValorTotal = rtaValorTotal;
     }
-    public RtaVendas(int idrtaVendas, RtaCliente rtaCliente, RtaUsuarios rtaUsuarios, Date rtaData, BigDecimal rtaValorTotal, Set rtaVendasprodutos) {
-       this.idrtaVendas = idrtaVendas;
-       this.rtaCliente = rtaCliente;
-       this.rtaUsuarios = rtaUsuarios;
-       this.rtaData = rtaData;
-       this.rtaValorTotal = rtaValorTotal;
-       this.rtaVendasprodutos = rtaVendasprodutos;
-    }
+   
    
      @Id 
 
@@ -106,14 +99,7 @@ public class RtaVendas  implements java.io.Serializable {
         this.rtaValorTotal = rtaValorTotal;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="rtaVendas")
-    public Set getRtaVendasprodutos() {
-        return this.rtaVendasprodutos;
-    }
-    
-    public void setRtaVendasprodutos(Set rtaVendasprodutos) {
-        this.rtaVendasprodutos = rtaVendasprodutos;
-    }
+
 
 
 

@@ -5,15 +5,24 @@
  */
 package view;
 
+import bean.RtaProdutos;
+import dao.RtaProduto_DAO;
+import java.util.List;
 import tools.Util;
 
 /**
  *
- * @author Usuario
+ * @author 
  */
 public class JDlgRtaProdutos extends javax.swing.JDialog {
 
     JDlgRtaProdutosIA jDlgRtaProdutosIA;
+    RtaProduto_DAO rtaProduto_DAO;
+    RtaProdutos rtaProdutos;
+    ProdutosController produtosController;
+    private JDlgRtaProdutos jDlgRtaProdutos;
+    JDlgRtaProdutos jDlgRtaProdutos1 = new JDlgRtaProdutos(null, true);
+    
     
     /**
      * Creates new form JDlgProdutos
@@ -23,6 +32,13 @@ public class JDlgRtaProdutos extends javax.swing.JDialog {
         initComponents();
         setTitle("produtos");
         jDlgRtaProdutosIA = new JDlgRtaProdutosIA(null, true);
+        
+        jDlgRtaProdutos = new JDlgRtaProdutos(null, true);
+        produtosController = new ProdutosController();
+        rtaProduto_DAO = new RtaProduto_DAO();
+        List lista = rtaProduto_DAO.listAll();
+        produtosController.setList(lista);
+        jTable1.setModel(produtosController);
         setLocationRelativeTo(null);
     }
 
@@ -128,7 +144,21 @@ public class JDlgRtaProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if(Util.perguntar("Deseja Excluir o Usuário")==true){}
+if (Util.perguntar("Deseja execluir o registro") == true) {
+            int sel = jTable1.getSelectedRow();
+            rtaProdutos = produtosController.getBean(sel);
+            rtaProduto_DAO.delete(rtaProdutos);
+            //atualizar a lista no jTable 
+            List lista = rtaProduto_DAO.listAll();
+            produtosController.setList(lista);
+        } else {
+          Util.mensagem("Exclusão cancelada");
+        }
+
+
+
+
+
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed

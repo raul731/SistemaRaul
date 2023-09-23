@@ -1,5 +1,5 @@
 package bean;
-// Generated 16/09/2023 19:54:44 by Hibernate Tools 4.3.1
+// Generated 22/09/2023 23:51:17 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -23,28 +23,22 @@ public class RtaProdutos  implements java.io.Serializable {
 
 
      private int idrtaProdutos;
-     private String rtaGrupo;
+     private int rtaGrupo;
      private String rtaNome;
      private BigDecimal rtaValor;
-     private Set rtaVendasprodutos = new HashSet(0);
+    
 
     public RtaProdutos() {
     }
 
 	
-    public RtaProdutos(int idrtaProdutos, String rtaGrupo, String rtaNome, BigDecimal rtaValor) {
+    public RtaProdutos(int idrtaProdutos, int rtaGrupo, String rtaNome, BigDecimal rtaValor) {
         this.idrtaProdutos = idrtaProdutos;
         this.rtaGrupo = rtaGrupo;
         this.rtaNome = rtaNome;
         this.rtaValor = rtaValor;
     }
-    public RtaProdutos(int idrtaProdutos, String rtaGrupo, String rtaNome, BigDecimal rtaValor, Set rtaVendasprodutos) {
-       this.idrtaProdutos = idrtaProdutos;
-       this.rtaGrupo = rtaGrupo;
-       this.rtaNome = rtaNome;
-       this.rtaValor = rtaValor;
-       this.rtaVendasprodutos = rtaVendasprodutos;
-    }
+  
    
      @Id 
 
@@ -59,12 +53,12 @@ public class RtaProdutos  implements java.io.Serializable {
     }
 
     
-    @Column(name="rta_grupo", nullable=false, length=50)
-    public String getRtaGrupo() {
+    @Column(name="rta_grupo", nullable=false)
+    public int getRtaGrupo() {
         return this.rtaGrupo;
     }
     
-    public void setRtaGrupo(String rtaGrupo) {
+    public void setRtaGrupo(int rtaGrupo) {
         this.rtaGrupo = rtaGrupo;
     }
 
@@ -88,14 +82,7 @@ public class RtaProdutos  implements java.io.Serializable {
         this.rtaValor = rtaValor;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="rtaProdutos")
-    public Set getRtaVendasprodutos() {
-        return this.rtaVendasprodutos;
-    }
-    
-    public void setRtaVendasprodutos(Set rtaVendasprodutos) {
-        this.rtaVendasprodutos = rtaVendasprodutos;
-    }
+
 
 
 

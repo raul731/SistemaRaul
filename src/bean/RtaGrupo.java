@@ -1,5 +1,5 @@
 package bean;
-// Generated 16/09/2023 19:54:44 by Hibernate Tools 4.3.1
+// Generated 22/09/2023 23:51:17 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -19,21 +19,21 @@ public class RtaGrupo  implements java.io.Serializable {
 
      private int idrtaGrupo;
      private String rtaDescricao;
-     private String rtaMassa;
-     private String rtaRecheio;
+     private int rtaMassa;
+     private int rtaRecheio;
      private String rtaDecoracao;
 
     public RtaGrupo() {
     }
 
 	
-    public RtaGrupo(int idrtaGrupo, String rtaDescricao, String rtaMassa, String rtaRecheio) {
+    public RtaGrupo(int idrtaGrupo, String rtaDescricao, int rtaMassa, int rtaRecheio) {
         this.idrtaGrupo = idrtaGrupo;
         this.rtaDescricao = rtaDescricao;
         this.rtaMassa = rtaMassa;
         this.rtaRecheio = rtaRecheio;
     }
-    public RtaGrupo(int idrtaGrupo, String rtaDescricao, String rtaMassa, String rtaRecheio, String rtaDecoracao) {
+    public RtaGrupo(int idrtaGrupo, String rtaDescricao, int rtaMassa, int rtaRecheio, String rtaDecoracao) {
        this.idrtaGrupo = idrtaGrupo;
        this.rtaDescricao = rtaDescricao;
        this.rtaMassa = rtaMassa;
@@ -64,22 +64,22 @@ public class RtaGrupo  implements java.io.Serializable {
     }
 
     
-    @Column(name="rta_massa", nullable=false, length=50)
-    public String getRtaMassa() {
+    @Column(name="rta_massa", nullable=false)
+    public int getRtaMassa() {
         return this.rtaMassa;
     }
     
-    public void setRtaMassa(String rtaMassa) {
+    public void setRtaMassa(int rtaMassa) {
         this.rtaMassa = rtaMassa;
     }
 
     
-    @Column(name="rta_recheio", nullable=false, length=50)
-    public String getRtaRecheio() {
+    @Column(name="rta_recheio", nullable=false)
+    public int getRtaRecheio() {
         return this.rtaRecheio;
     }
     
-    public void setRtaRecheio(String rtaRecheio) {
+    public void setRtaRecheio(int rtaRecheio) {
         this.rtaRecheio = rtaRecheio;
     }
 

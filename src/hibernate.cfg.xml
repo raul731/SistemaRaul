@@ -45,10 +45,14 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_raul_torres?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password"/>
+    <!--property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_raul_arantes?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">raul_arantes</property>
+    <property name="hibernate.connection.password">raul_arantes</property-->
     <mapping class="bean.RtaProdutos"/>
-    <mapping class="bean.RtaVendasproduto"/>
     <mapping class="bean.RtaCliente"/>
     <mapping class="bean.RtaUsuarios"/>
+    <mapping class="bean.RtaVendasproduto"/>
     <mapping class="bean.RtaGrupo"/>
     <mapping class="bean.RtaVendas"/>
   </session-factory>

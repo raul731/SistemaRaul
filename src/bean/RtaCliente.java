@@ -1,5 +1,5 @@
 package bean;
-// Generated 16/09/2023 19:54:44 by Hibernate Tools 4.3.1
+// Generated 22/09/2023 23:51:17 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -25,7 +25,7 @@ public class RtaCliente  implements java.io.Serializable {
      private String rtaNome;
      private String rtaCpf;
      private String rtaRg;
-     private String rtaPais;
+     private int rtaPais;
      private String rtaCep;
      private String rtaRua;
      private String rtaEndereco;
@@ -35,14 +35,14 @@ public class RtaCliente  implements java.io.Serializable {
      private String rtaGenero;
      private String rtaCelular;
      private String rtaTelefone;
-     private String rtaEstadoCivil;
-     private Set rtaVendases = new HashSet(0);
+     private Integer rtaEstadoCivil;
+  
 
     public RtaCliente() {
     }
 
 	
-    public RtaCliente(int idrtaCliente, String rtaNome, String rtaCpf, String rtaRg, String rtaPais, String rtaCep, String rtaRua, String rtaEndereco, String rtaBairro, String rtaNumeroRua, String rtaGenero, String rtaCelular) {
+    public RtaCliente(int idrtaCliente, String rtaNome, String rtaCpf, String rtaRg, int rtaPais, String rtaCep, String rtaRua, String rtaEndereco, String rtaBairro, String rtaNumeroRua, String rtaGenero, String rtaCelular) {
         this.idrtaCliente = idrtaCliente;
         this.rtaNome = rtaNome;
         this.rtaCpf = rtaCpf;
@@ -55,24 +55,6 @@ public class RtaCliente  implements java.io.Serializable {
         this.rtaNumeroRua = rtaNumeroRua;
         this.rtaGenero = rtaGenero;
         this.rtaCelular = rtaCelular;
-    }
-    public RtaCliente(int idrtaCliente, String rtaNome, String rtaCpf, String rtaRg, String rtaPais, String rtaCep, String rtaRua, String rtaEndereco, String rtaBairro, String rtaNumeroRua, String rtaComplemento, String rtaGenero, String rtaCelular, String rtaTelefone, String rtaEstadoCivil, Set rtaVendases) {
-       this.idrtaCliente = idrtaCliente;
-       this.rtaNome = rtaNome;
-       this.rtaCpf = rtaCpf;
-       this.rtaRg = rtaRg;
-       this.rtaPais = rtaPais;
-       this.rtaCep = rtaCep;
-       this.rtaRua = rtaRua;
-       this.rtaEndereco = rtaEndereco;
-       this.rtaBairro = rtaBairro;
-       this.rtaNumeroRua = rtaNumeroRua;
-       this.rtaComplemento = rtaComplemento;
-       this.rtaGenero = rtaGenero;
-       this.rtaCelular = rtaCelular;
-       this.rtaTelefone = rtaTelefone;
-       this.rtaEstadoCivil = rtaEstadoCivil;
-       this.rtaVendases = rtaVendases;
     }
    
      @Id 
@@ -118,12 +100,12 @@ public class RtaCliente  implements java.io.Serializable {
     }
 
     
-    @Column(name="rta_pais", nullable=false, length=50)
-    public String getRtaPais() {
+    @Column(name="rta_pais", nullable=false)
+    public int getRtaPais() {
         return this.rtaPais;
     }
     
-    public void setRtaPais(String rtaPais) {
+    public void setRtaPais(int rtaPais) {
         this.rtaPais = rtaPais;
     }
 
@@ -218,23 +200,16 @@ public class RtaCliente  implements java.io.Serializable {
     }
 
     
-    @Column(name="rta_estadoCivil", length=25)
-    public String getRtaEstadoCivil() {
+    @Column(name="rta_estadoCivil")
+    public Integer getRtaEstadoCivil() {
         return this.rtaEstadoCivil;
     }
     
-    public void setRtaEstadoCivil(String rtaEstadoCivil) {
+    public void setRtaEstadoCivil(Integer rtaEstadoCivil) {
         this.rtaEstadoCivil = rtaEstadoCivil;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="rtaCliente")
-    public Set getRtaVendases() {
-        return this.rtaVendases;
-    }
-    
-    public void setRtaVendases(Set rtaVendases) {
-        this.rtaVendases = rtaVendases;
-    }
+
 
 
 

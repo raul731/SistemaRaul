@@ -5,24 +5,86 @@
  */
 package view;
 
+import bean.RtaUsuarios;
+import dao.RtaUsuarios_DAO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Util;
 
 /**
  *
- * @author u09894615139
+ * 
  */
 public class JDlgRtaUsuarios extends javax.swing.JDialog {
 
+    
+    private boolean incluindo;
+    MaskFormatter mascaraCPF, mascaraDataNascimento;
+    public RtaUsuarios rtaUsuarios;
+    public RtaUsuarios_DAO rtaUsuarios_DAO;
     /**
-     * Creates new form JDlgUsuarioNovoIA
+     * 
      */
     public JDlgRtaUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+        
+        
+        rtaUsuarios_DAO = new RtaUsuarios_DAO();
+        
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtApelido, jFmtCpf, jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo,jBtnCancelar,jBtnConfirmar);
+        Util.habilitar(true, jBtnIncluir,jBtnAlterar,jBtnExclu,jBtnPesq);
         setTitle("Usuarios");
         setLocationRelativeTo(null);
-    }
+        try {
+            mascaraCPF = new MaskFormatter("###.###.###-##");
+            mascaraDataNascimento = new MaskFormatter("##/##/####");
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgRtaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jFmtCpf.setFormatterFactory(new DefaultFormatterFactory(mascaraCPF));
+        jFmtDataNascimento.setFormatterFactory(new DefaultFormatterFactory(mascaraDataNascimento));
 
+    }
+    
+    public RtaUsuarios viewBean() {
+        RtaUsuarios rtaUsuarios = new RtaUsuarios();
+        rtaUsuarios.setIdrtaUsuarios(Util.strInt(jTxtCodigo.getText()));
+        rtaUsuarios.setRtaNome(jTxtNome.getText());
+        rtaUsuarios.setRtaApelido(jTxtApelido.getText());
+        rtaUsuarios.setRtaCpf(jFmtCpf.getText());
+        rtaUsuarios.setRtaDataNascimento(Util.strDate(jFmtDataNascimento.getText()));
+        rtaUsuarios.setRtaSenha(jPwfSenha.getText());
+        rtaUsuarios.setRtaNivel(jCboNivel.getSelectedIndex());
+        rtaUsuarios.setRtaAtivo( jChbAtivo.isSelected() == true ? "S" : "N");
+       
+        return rtaUsuarios;}
+    
+    public void beanView(RtaUsuarios rtaUsuarios){
+        String id = String.valueOf(rtaUsuarios.getIdrtaUsuarios());
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        jTxtCodigo.setText(id);
+        jTxtNome.setText(rtaUsuarios.getRtaNome());
+        jFmtCpf.setText(rtaUsuarios.getRtaCpf());
+        jFmtDataNascimento.setText(formato.format(rtaUsuarios.getRtaDataNascimento()));
+        jTxtApelido.setText(rtaUsuarios.getRtaApelido());
+        jPwfSenha.setText(rtaUsuarios.getRtaSenha());
+        jCboNivel.setSelectedIndex(rtaUsuarios.getRtaNivel());
+        if (rtaUsuarios.getRtaAtivo().equals("S") == true) {
+            jChbAtivo.setSelected(true);
+        } else {
+            jChbAtivo.setSelected(false);
+        }
+     
+        
+    }
+        
+
+        
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,16 +108,16 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
         jCboNivel = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jChbAtivo = new javax.swing.JCheckBox();
-        jTxtApedido = new javax.swing.JTextField();
+        jTxtApelido = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jBtnOk = new javax.swing.JButton();
+        jBtnConfirmar = new javax.swing.JButton();
         jBtnCancelar = new javax.swing.JButton();
         jBtnPesq = new javax.swing.JButton();
         jBtnExclu = new javax.swing.JButton();
-        jBtnAlte = new javax.swing.JButton();
-        jBtnInclu = new javax.swing.JButton();
+        jBtnAlterar = new javax.swing.JButton();
+        jBtnIncluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -77,13 +139,13 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
 
         jLabel3.setText("Apelido");
 
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
-        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ConfirmIcon.png"))); // NOI18N
-        jBtnOk.setText("Confirmar");
-        jBtnOk.addActionListener(new java.awt.event.ActionListener() {
+        jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ConfirmIcon.png"))); // NOI18N
+        jBtnConfirmar.setText("Confirmar");
+        jBtnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnOkActionPerformed(evt);
+                jBtnConfirmarActionPerformed(evt);
             }
         });
 
@@ -111,19 +173,19 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
             }
         });
 
-        jBtnAlte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/EditIcon.png"))); // NOI18N
-        jBtnAlte.setText("Alterar");
-        jBtnAlte.addActionListener(new java.awt.event.ActionListener() {
+        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/EditIcon.png"))); // NOI18N
+        jBtnAlterar.setText("Alterar");
+        jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnAlteActionPerformed(evt);
+                jBtnAlterarActionPerformed(evt);
             }
         });
 
-        jBtnInclu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-button-inside-black-circle.png"))); // NOI18N
-        jBtnInclu.setText("Incluir");
-        jBtnInclu.addActionListener(new java.awt.event.ActionListener() {
+        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-button-inside-black-circle.png"))); // NOI18N
+        jBtnIncluir.setText("Incluir");
+        jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnIncluActionPerformed(evt);
+                jBtnIncluirActionPerformed(evt);
             }
         });
 
@@ -133,15 +195,15 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jBtnInclu)
+                .addComponent(jBtnIncluir)
                 .addGap(18, 18, 18)
-                .addComponent(jBtnAlte)
+                .addComponent(jBtnAlterar)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnExclu)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnCancelar)
                 .addGap(18, 18, 18)
-                .addComponent(jBtnOk)
+                .addComponent(jBtnConfirmar)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnPesq))
         );
@@ -150,12 +212,12 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnOk)
+                    .addComponent(jBtnConfirmar)
                     .addComponent(jBtnCancelar)
                     .addComponent(jBtnPesq)
                     .addComponent(jBtnExclu)
-                    .addComponent(jBtnAlte)
-                    .addComponent(jBtnInclu)))
+                    .addComponent(jBtnAlterar)
+                    .addComponent(jBtnIncluir)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -178,7 +240,7 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTxtNome)
-                    .addComponent(jTxtApedido)
+                    .addComponent(jTxtApelido)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -220,7 +282,7 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtApedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTxtApelido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
@@ -245,31 +307,64 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-        setVisible(false);
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNascimento,
+                jPwfSenha, jCboNivel, jChbAtivo, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExclu, jBtnPesq);
+        Util.limparCampos(jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNascimento,
+                jPwfSenha, jCboNivel, jChbAtivo);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
-    private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-        setVisible(false);
-    }//GEN-LAST:event_jBtnOkActionPerformed
+    private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
+         rtaUsuarios = viewBean();        
+        if (incluindo == true) {
+            rtaUsuarios_DAO.insert(rtaUsuarios);
+        } else {
+            rtaUsuarios_DAO.update(rtaUsuarios);
+        }                
+        
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNascimento,
+                jPwfSenha, jCboNivel, jChbAtivo, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExclu, jBtnPesq);
 
-    private void jBtnIncluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluActionPerformed
-        Util.habilitar(true, jTxtNome, jTxtApedido, jFmtCpf, jTxtCodigo, jBtnCancelar,jBtnOk,jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo);
-        Util.habilitar(false, jBtnInclu, jBtnAlte, jBtnExclu, jBtnPesq);
-        //    incluindo = true;
+    }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
-        Util.limparCampos(jTxtApedido, jTxtNome, jTxtCodigo, jFmtCpf, jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo);
-    }//GEN-LAST:event_jBtnIncluActionPerformed
+    private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
+        Util.habilitar(true, jTxtNome, jTxtApelido, jFmtCpf, jTxtCodigo, jBtnCancelar,jBtnConfirmar,jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo);
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExclu, jBtnPesq);
+           incluindo = true;
+
+        Util.limparCampos(jTxtApelido, jTxtNome, jTxtCodigo, jFmtCpf, jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo);
+    }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnExcluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluActionPerformed
-        // TODO add your handling code here:
+          if (Util.perguntar("Deseja excluir o registro?") == true) {
+            rtaUsuarios = viewBean();
+            rtaUsuarios_DAO.delete(rtaUsuarios);
+        } else {
+
+            Util.mensagem("Exclusão cancelada.");
+        }
+
+        Util.limparCampos(jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNascimento,
+                jPwfSenha, jCboNivel, jChbAtivo);
     }//GEN-LAST:event_jBtnExcluActionPerformed
 
-    private void jBtnAlteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlteActionPerformed
-
-    }//GEN-LAST:event_jBtnAlteActionPerformed
+    private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
+Util.habilitar(true, jTxtNome, jTxtApelido, jFmtCpf, jTxtCodigo, jBtnCancelar,jBtnConfirmar,jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo);
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExclu, jBtnPesq);
+            incluindo = false;        
+    }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnPesqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesqActionPerformed
-        // TODO add your handling code here:
+Util.habilitar(true, jTxtNome, jTxtApelido, jFmtCpf, jTxtCodigo, jBtnCancelar,jBtnConfirmar,jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo);
+ Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExclu, jBtnPesq);
+         UsuariosPesquisa usuariosPesquisa = new UsuariosPesquisa(null, true);
+      
+         usuariosPesquisa.setTelaAnterior(this);
+        usuariosPesquisa.setVisible(true);
+
+
+
     }//GEN-LAST:event_jBtnPesqActionPerformed
 
     /**
@@ -322,11 +417,11 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtnAlte;
+    private javax.swing.JButton jBtnAlterar;
     private javax.swing.JButton jBtnCancelar;
+    private javax.swing.JButton jBtnConfirmar;
     private javax.swing.JButton jBtnExclu;
-    private javax.swing.JButton jBtnInclu;
-    private javax.swing.JButton jBtnOk;
+    private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnPesq;
     private javax.swing.JComboBox<String> jCboNivel;
     private javax.swing.JCheckBox jChbAtivo;
@@ -342,7 +437,7 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPwfSenha;
-    private javax.swing.JTextField jTxtApedido;
+    private javax.swing.JTextField jTxtApelido;
     private javax.swing.JTextField jTxtCodigo;
     private javax.swing.JTextField jTxtNome;
     // End of variables declaration//GEN-END:variables

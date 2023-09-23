@@ -43,8 +43,8 @@ Contributor(s):
   <schema-selection match-catalog="db_raul_torres"/>
   <table-filter match-name="rta_vendasproduto"/>
   <table-filter match-name="rta_grupo"/>
+  <table-filter match-name="rta_produtos"/>
   <table-filter match-name="rta_vendas"/>
   <table-filter match-name="rta_cliente"/>
   <table-filter match-name="rta_usuarios"/>
-  <table-filter match-name="rta_produtos"/>
 </hibernate-reverse-engineering>

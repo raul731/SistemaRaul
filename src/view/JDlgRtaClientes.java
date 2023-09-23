@@ -5,14 +5,22 @@
  */
 package view;
 
+import bean.RtaCliente;
+import dao.RtaClientes_DAO;
+import java.text.SimpleDateFormat;
+import javax.swing.text.MaskFormatter;
 import tools.Util;
 
 /**
  *
- * @author Usuario
+ * @author 
  */
 public class JDlgRtaClientes extends javax.swing.JDialog {
 
+     MaskFormatter mascaraCPF;
+    private boolean incluindo;
+    public RtaCliente rtaCliente;
+    public RtaClientes_DAO rtaClientes_DAO;
     JDlgRtaClientes jDlgRtaClientes;
     
     /**
@@ -21,9 +29,55 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
     public JDlgRtaClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        rtaClientes_DAO = new RtaClientes_DAO();
+        
+        Util.habilitar(false,jBtnCancelar,jBtnConf,jTxtNome,jFmtCep,jFmtCpf,jFmtRg,jTxtBairro,jTxtEndereco,jTxtRua,jTxtComple,jCboPais,jTxtCell,jTxtTell,jCboEstadoC,jtxtGenero );
+        Util.habilitar(true, jBtnInclu,jBtnAlte,jBtnExclu,jBtnPesq);
+        
         setTitle("Cliente");
         setLocationRelativeTo(null);
-        
+
+    }
+    
+    public RtaCliente viewBean(){
+        RtaCliente rtaCliente = new RtaCliente();
+        rtaCliente.setIdrtaCliente(Util.strInt(jTxtCodigo.getText()));
+        rtaCliente.setRtaNome(jTxtNome.getText());
+        rtaCliente.setRtaCpf(jFmtCpf.getText());
+        rtaCliente.setRtaCep(jFmtCep.getText());
+        rtaCliente.setRtaRg(jFmtRg.getText());
+       //dando erro rtaCliente.setRtaPais(jCboPais.getSelectedIndex());
+        rtaCliente.setRtaRua(jTxtRua.getText());
+        rtaCliente.setRtaNumeroRua(jTxtNumRua.getText());
+        rtaCliente.setRtaBairro(jTxtBairro.getText());
+        rtaCliente.setRtaComplemento(jTxtComple.getText());
+        rtaCliente.setRtaGenero(jtxtGenero.getText());
+        rtaCliente.setRtaCelular(jTxtCell.getText());
+        rtaCliente.setRtaTelefone(jTxtTell.getText());
+         return this.rtaCliente;
+    }
+    
+    public void beanView(RtaCliente rtaCliente){
+        String id = String.valueOf(rtaCliente.getIdrtaCliente());
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        jTxtCodigo.setText(id);
+        jTxtNome.setText(rtaCliente.getRtaNome());
+        jFmtCpf.setText(rtaCliente.getRtaCpf());
+        jFmtRg.setText(rtaCliente.getRtaRg());
+      //  jCboPais.setSelectedIndex(rtaCliente.getRtaPais());
+      jFmtCep.setText(rtaCliente.getRtaCep());
+      jTxtRua.setText(rtaCliente.getRtaRua());
+      jTxtNumRua.setText(rtaCliente.getRtaNumeroRua());
+      jTxtBairro.setText(rtaCliente.getRtaBairro());
+      jTxtComple.setText(rtaCliente.getRtaComplemento());
+      jtxtGenero.setText(rtaCliente.getRtaGenero());
+      jTxtCell.setText(rtaCliente.getRtaCelular());
+      jTxtTell.setText(rtaCliente.getRtaTelefone());
+    //  jCboEstadoC.setSelectedIndex(rtaCliente.getRtaEstadoCivil());
+    jTxtEndereco.setText(rtaCliente.getRtaEndereco());
+
+      
     }
 
     /**
@@ -59,7 +113,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         tell = new javax.swing.JLabel();
         jTxtEstadoC = new javax.swing.JLabel();
         jTxtTell = new javax.swing.JTextField();
-        jCbocEstadoC = new javax.swing.JComboBox<>();
+        jCboEstadoC = new javax.swing.JComboBox<>();
         jCboPais = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jBtnPesq = new javax.swing.JButton();
@@ -68,6 +122,10 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         jBtnExclu = new javax.swing.JButton();
         jBtnAlte = new javax.swing.JButton();
         jBtnInclu = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTxtCodigo = new javax.swing.JTextField();
+        endere1 = new javax.swing.JLabel();
+        jTxtNumRua = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -163,10 +221,10 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
             }
         });
 
-        jCbocEstadoC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro", "Casado", "Divorciado(a)", "Viuvo(a)", "Namorando" }));
-        jCbocEstadoC.addActionListener(new java.awt.event.ActionListener() {
+        jCboEstadoC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro", "Casado", "Divorciado(a)", "Viuvo(a)", "Namorando" }));
+        jCboEstadoC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCbocEstadoCActionPerformed(evt);
+                jCboEstadoCActionPerformed(evt);
             }
         });
 
@@ -239,7 +297,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                 .addComponent(jBtnCancelar)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnPesq)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,47 +312,61 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                     .addComponent(jBtnInclu)))
         );
 
+        jLabel1.setText("codigo");
+
+        endere1.setText("numero Rua");
+
+        jTxtNumRua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtNumRuaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(RG)
-                            .addComponent(jFmtRg, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(pais)
-                            .addComponent(jFmtCep, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(jFmtCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(Cep)
-                            .addComponent(rua)
-                            .addComponent(jTxtRua, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(endere)
-                            .addComponent(nome)
-                            .addComponent(jTxtNome)
-                            .addComponent(cpf)
-                            .addComponent(jCboPais, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(68, 68, 68)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bairro)
-                            .addComponent(comple)
-                            .addComponent(jTxtComple, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(genero)
-                            .addComponent(cell)
-                            .addComponent(jTxtCell, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tell)
-                            .addComponent(jTxtTell, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtxtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtEstadoC)
-                            .addComponent(jCbocEstadoC, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(294, 294, 294)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(RG)
+                                    .addComponent(jFmtRg, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(pais)
+                                    .addComponent(jFmtCep, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(jFmtCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(Cep)
+                                    .addComponent(rua)
+                                    .addComponent(jTxtRua, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(nome)
+                                    .addComponent(jTxtNome)
+                                    .addComponent(cpf)
+                                    .addComponent(jCboPais, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTxtCodigo))
+                                .addGap(68, 68, 68)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(endere)
+                                    .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bairro)
+                                    .addComponent(comple)
+                                    .addComponent(jTxtComple, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(genero)
+                                    .addComponent(cell)
+                                    .addComponent(jTxtCell, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tell)
+                                    .addComponent(jTxtTell, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtxtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtEstadoC)
+                                    .addComponent(jCboEstadoC, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTxtNumRua, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(endere1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -303,35 +375,15 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(bairro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cpf)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RG)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFmtRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pais)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(Cep)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFmtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rua)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(comple)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -351,12 +403,40 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTxtEstadoC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCbocEstadoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jCboEstadoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(endere)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cpf)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RG)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFmtRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pais)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(Cep)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jFmtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rua)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(endere)
+                .addComponent(endere1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(jTxtNumRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -407,38 +487,64 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtTellActionPerformed
 
-    private void jCbocEstadoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbocEstadoCActionPerformed
+    private void jCboEstadoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboEstadoCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCbocEstadoCActionPerformed
+    }//GEN-LAST:event_jCboEstadoCActionPerformed
 
     private void jBtnIncluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluActionPerformed
-        Util.habilitar(true, jTxtBairro, jTxtNome, jTxtCell, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCbocEstadoC, jBtnConf, jBtnCancelar);
-                Util.habilitar(false, jBtnInclu, jBtnAlte, jBtnExclu, jBtnPesq);
-            //    incluindo = true;
+        Util.habilitar(true, jTxtBairro, jTxtNome, jTxtCell, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCboEstadoC, jBtnConf, jBtnCancelar);
+        Util.habilitar(false, jBtnInclu, jBtnAlte, jBtnExclu, jBtnPesq);
+       incluindo = true;
 
-                Util.limparCampos(jTxtBairro, jTxtNome, jTxtCell, jFmtCpf, jFmtCep, jCboPais, jCbocEstadoC, jTxtComple, jTxtEndereco, jtxtGenero, jTxtRua);
+        Util.limparCampos(jTxtBairro, jTxtNome, jTxtCell, jFmtCpf, jFmtCep, jCboPais, jCboEstadoC, jTxtComple, jTxtEndereco, jtxtGenero, jTxtRua);
+                
+                 
     }//GEN-LAST:event_jBtnIncluActionPerformed
 
     private void jBtnAlteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlteActionPerformed
-        
+        Util.habilitar(true, jTxtBairro, jTxtNome, jTxtCell, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCboEstadoC, jBtnConf, jBtnCancelar);
+        Util.habilitar(false, jBtnInclu, jBtnAlte, jBtnExclu, jBtnPesq);
+        incluindo = false;
         
     }//GEN-LAST:event_jBtnAlteActionPerformed
 
     private void jBtnExcluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluActionPerformed
-        // TODO add your handling code here:
+ if (Util.perguntar("Deseja excluir o registro?") == true){
+          rtaCliente = viewBean();
+           rtaClientes_DAO.delete(rtaClientes_DAO);
+       }
+       else {
+        
+            Util.mensagem("Exclusão cancelada");
+       
+ }
+            Util.limparCampos(jTxtBairro, jTxtNome, jTxtCell, jFmtCpf, jFmtCep, jCboPais, jCboEstadoC, jTxtComple, jTxtEndereco, jtxtGenero, jTxtRua);
+
     }//GEN-LAST:event_jBtnExcluActionPerformed
 
     private void jBtnConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfActionPerformed
-        // TODO add your handling code here:
+if (incluindo ==true ){
+        rtaClientes_DAO.insert(rtaClientes_DAO);}
+        else{
+                rtaClientes_DAO.insert(rtaCliente);
+                
+                }
+                Util.limparCampos(jTxtBairro, jTxtNome, jTxtCell, jFmtCpf, jFmtCep, jCboPais, jCboEstadoC, jTxtComple, jTxtEndereco, jtxtGenero, jTxtRua);
     }//GEN-LAST:event_jBtnConfActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-        // TODO add your handling code here:
+        Util.mensagem("Operação cancelada");
+        Util.limparCampos(jTxtBairro, jTxtNome, jTxtCell, jFmtCpf, jFmtCep, jCboPais, jCboEstadoC, jTxtComple, jTxtEndereco, jtxtGenero, jTxtRua);
+
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesqActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnPesqActionPerformed
+
+    private void jTxtNumRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNumRuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtNumRuaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -491,6 +597,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
     private javax.swing.JLabel comple;
     private javax.swing.JLabel cpf;
     private javax.swing.JLabel endere;
+    private javax.swing.JLabel endere1;
     private javax.swing.JLabel genero;
     private javax.swing.JButton jBtnAlte;
     private javax.swing.JButton jBtnCancelar;
@@ -498,18 +605,21 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
     private javax.swing.JButton jBtnExclu;
     private javax.swing.JButton jBtnInclu;
     private javax.swing.JButton jBtnPesq;
+    private javax.swing.JComboBox<String> jCboEstadoC;
     private javax.swing.JComboBox<String> jCboPais;
-    private javax.swing.JComboBox<String> jCbocEstadoC;
     private javax.swing.JTextField jFmtCep;
     private javax.swing.JTextField jFmtCpf;
     private javax.swing.JTextField jFmtRg;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTxtBairro;
     private javax.swing.JTextField jTxtCell;
+    private javax.swing.JTextField jTxtCodigo;
     private javax.swing.JTextField jTxtComple;
     private javax.swing.JTextField jTxtEndereco;
     private javax.swing.JLabel jTxtEstadoC;
     private javax.swing.JTextField jTxtNome;
+    private javax.swing.JTextField jTxtNumRua;
     private javax.swing.JTextField jTxtRua;
     private javax.swing.JTextField jTxtTell;
     private javax.swing.JTextField jtxtGenero;

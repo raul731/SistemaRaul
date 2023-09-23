@@ -5,7 +5,11 @@
  */
 package tools;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -16,6 +20,12 @@ import javax.swing.JTextField;
  *
  * @author u05074221129
  */
+
+  //... varios argumentos varArdis
+    //JComponent => arvore de deveração polimosfismo = pai do setEnable
+    //vetComp => vetor 
+    //for => componentes 
+    //laço para percorrer o os componentes do vetor 
 public class Util {
     public static void habilitar(boolean valor, JComponent ... vetComp) {
         for (int i = 0; i < vetComp.length; i++) {
@@ -43,30 +53,40 @@ public class Util {
     }
     
     public static boolean perguntar(String cadeia) {
-       JOptionPane.showConfirmDialog(null, cadeia, 
+      int resp = JOptionPane.showConfirmDialog(null, cadeia, 
                "perguntar",JOptionPane.YES_NO_OPTION);
        
     
-        return false;
+        return resp == JOptionPane.YES_OPTION;
     }
     
-    public static String strInt(int num) {
-        return "";
+    public static int strInt(String cad) {
+            return Integer.parseInt(cad);
+    }
+    public static String intStr(int num) {
+            return String.valueOf(num);
     }
     
     public static int strDouble(String cad) {
-        return 0;
+        return Integer.valueOf(cad);
     }
     
-    public static String doubleStr(int num) {
-        return "";
+    public static String doubleStr(double num) {
+        return String.valueOf(num);
     }
     
     public static Date  strDate(String cad) {
-        return null;
+        SimpleDateFormat formataNascimento = new SimpleDateFormat ("dd/MM/yyyy"); //convertendo string para Date
+try {
+return formataNascimento.parse (cad);
+} catch (ParseException ex) {
+Logger.getLogger (Util.class.getName()).log (Level.SEVERE, null, ex);
+return null;
+    }
     }
     
-    public static String datestr(Date data) {
-        return "";
+    public static String datestr(Date num) {
+       SimpleDateFormat formatoNascimento = new SimpleDateFormat ("dd/MM/yyyy");// Convertendo data para String
+return formatoNascimento.format (num);
     }
 }

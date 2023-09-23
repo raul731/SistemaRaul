@@ -1,5 +1,5 @@
 package bean;
-// Generated 16/09/2023 19:54:44 by Hibernate Tools 4.3.1
+// Generated 22/09/2023 23:51:17 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -31,14 +31,14 @@ public class RtaUsuarios  implements java.io.Serializable {
      private Date rtaDataNascimento;
      private String rtaSenha;
      private int rtaNivel;
-     private String rtaAtivo;
-     private Set rtaVendases = new HashSet(0);
+     private int rtaAtivo;
+   
 
     public RtaUsuarios() {
     }
 
 	
-    public RtaUsuarios(int idrtaUsuarios, String rtaNome, String rtaApelido, String rtaCpf, Date rtaDataNascimento, String rtaSenha, int rtaNivel, String rtaAtivo) {
+    public RtaUsuarios(int idrtaUsuarios, String rtaNome, String rtaApelido, String rtaCpf, Date rtaDataNascimento, String rtaSenha, int rtaNivel, int rtaAtivo) {
         this.idrtaUsuarios = idrtaUsuarios;
         this.rtaNome = rtaNome;
         this.rtaApelido = rtaApelido;
@@ -48,17 +48,7 @@ public class RtaUsuarios  implements java.io.Serializable {
         this.rtaNivel = rtaNivel;
         this.rtaAtivo = rtaAtivo;
     }
-    public RtaUsuarios(int idrtaUsuarios, String rtaNome, String rtaApelido, String rtaCpf, Date rtaDataNascimento, String rtaSenha, int rtaNivel, String rtaAtivo, Set rtaVendases) {
-       this.idrtaUsuarios = idrtaUsuarios;
-       this.rtaNome = rtaNome;
-       this.rtaApelido = rtaApelido;
-       this.rtaCpf = rtaCpf;
-       this.rtaDataNascimento = rtaDataNascimento;
-       this.rtaSenha = rtaSenha;
-       this.rtaNivel = rtaNivel;
-       this.rtaAtivo = rtaAtivo;
-       this.rtaVendases = rtaVendases;
-    }
+   
    
      @Id 
 
@@ -133,23 +123,16 @@ public class RtaUsuarios  implements java.io.Serializable {
     }
 
     
-    @Column(name="rta_ativo", nullable=false, length=50)
-    public String getRtaAtivo() {
+    @Column(name="rta_ativo", nullable=false)
+    public int getRtaAtivo() {
         return this.rtaAtivo;
     }
     
-    public void setRtaAtivo(String rtaAtivo) {
+    public void setRtaAtivo(int rtaAtivo) {
         this.rtaAtivo = rtaAtivo;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="rtaUsuarios")
-    public Set getRtaVendases() {
-        return this.rtaVendases;
-    }
-    
-    public void setRtaVendases(Set rtaVendases) {
-        this.rtaVendases = rtaVendases;
-    }
+
 
 
 

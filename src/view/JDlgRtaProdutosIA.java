@@ -5,18 +5,47 @@
  */
 package view;
 
+import bean.RtaCliente;
+import bean.RtaProdutos;
+import dao.RtaClientes_DAO;
+import dao.RtaProduto_DAO;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+import tools.Util;
+
 /**
  *
  * @author Usuario
  */
 public class JDlgRtaProdutosIA extends javax.swing.JDialog {
 
+     MaskFormatter mascaraCPF;
+    private boolean incluindo;
+    public RtaProdutos rtaProdutos;
+    public RtaProduto_DAO rtaProduto_DAO;
+    JDlgRtaProdutos jDlgRtaProdutos;
+    
+    //variaveis usadas para formatação de caompos formatados
+    RtaProduto_DAO produto_DAO;
+    
+    
     /**
      * Creates new form JDlgRtaProdutos
      */
     public JDlgRtaProdutosIA(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Produtos");
+         Util.habilitar(true,jTxtNome, jTxtPreco,jCboGrupo, jBtnOk, jBtnCancelar);
+        
+        
+        
+         
+      
+        setLocationRelativeTo(null);
     }
 
     /**

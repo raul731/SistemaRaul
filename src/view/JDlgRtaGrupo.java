@@ -5,6 +5,9 @@
  */
 package view;
 
+import bean.RtaGrupo;
+import dao.RtaGrupo_DAO;
+import java.util.List;
 import tools.Util;
 
 /**
@@ -13,18 +16,27 @@ import tools.Util;
  */
 public class JDlgRtaGrupo extends javax.swing.JDialog {
 
-    JDlgRtaGrupoIA jDlgRtaGrupoIA;
+    RtaGrupo_DAO rtaGrupo_DAO;
+    RtaGrupo rtaGrupo;
+    GrupoController grupoController;
+    private JDlgRtaGrupoIA jDlgRtaGrupoIA;
     /**
      * Creates new form JDlgRtaGrupo
      */
     public JDlgRtaGrupo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setTitle("grupo");
-        jDlgRtaGrupoIA = new JDlgRtaGrupoIA(null, true);
         initComponents();
         setLocationRelativeTo(null);
+        
+        jDlgRtaGrupoIA = new JDlgRtaGrupoIA(null, true);
+        grupoController = new GrupoController();
+        rtaGrupo_DAO = new RtaGrupo_DAO();
+        List lista = rtaGrupo_DAO.listAll();
+        grupoController.setList(lista);
+        jTable1.setModel(grupoController);
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,7 +141,16 @@ public class JDlgRtaGrupo extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if(Util.perguntar("Deseja Excluir o Usuário")==true){}
+        if (Util.perguntar("Deseja excluir o registro?") == true) {
+            int sel = jTable1.getSelectedRow();
+            rtaGrupo = grupoController.getBean(sel);
+            rtaGrupo_DAO.delete(rtaGrupo);
+            //atualizar a lista no jtable
+            List lista = rtaGrupo_DAO.listAll();
+            grupoController.setList(lista);
+        } else {
+            Util.mensagem("Exclusão cancelada.");
+        }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
