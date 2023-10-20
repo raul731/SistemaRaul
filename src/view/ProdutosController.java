@@ -65,22 +65,10 @@ public class ProdutosController extends AbstractTableModel{
             return "nome";
         }
         if (column == 2 ) {
-            return "apelido";
+            return "Grupo";
         }
         if (column == 3 ) {
-            return "cpf";
-        }
-        if (column == 4 ) {
-            return "senha";
-        }
-        if (column == 5 ) {
-            return "nivel";
-        }
-        if (column == 6 ) {
-            return "ativo";
-        }
-        if (column == 7 ) {
-            return "Data de nascimento";
+            return "Valor";
         }
         return "";
     }

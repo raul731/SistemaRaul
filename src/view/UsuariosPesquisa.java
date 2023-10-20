@@ -17,7 +17,8 @@ import java.util.List;
 public class UsuariosPesquisa extends javax.swing.JDialog {
 
     private JDlgRtaUsuarios jDlgRtaUsuarios;
-    private UsuariosController usuariosController;
+    RtaUsuarios_DAO rtaUsuarios_DAO;
+    UsuariosController usuariosController;
    
     /**
      * Creates new form JDlgUsuariosPesquisa
@@ -25,11 +26,13 @@ public class UsuariosPesquisa extends javax.swing.JDialog {
     public UsuariosPesquisa(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
         usuariosController = new UsuariosController();
-        RtaUsuarios_DAO rtaUsuarios_DAO = new RtaUsuarios_DAO();
+         rtaUsuarios_DAO = new RtaUsuarios_DAO();
         List lista = rtaUsuarios_DAO.listAll();
         usuariosController.setList(lista);
         jTable1.setModel(usuariosController);
+        
         setTitle("Registro de Usuarios");
         setLocationRelativeTo(null);
     }
@@ -67,7 +70,6 @@ public class UsuariosPesquisa extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
         jBtnCancelar.setText("CANCELAR");
         jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +77,6 @@ public class UsuariosPesquisa extends javax.swing.JDialog {
             }
         });
 
-        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
         jBtnOk.setText("OK");
         jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

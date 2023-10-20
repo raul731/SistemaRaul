@@ -41,6 +41,11 @@ public class JFrmRtaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToolBar1 = new javax.swing.JToolBar();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        jBtnCliente = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        jBtnListagem = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMnuPrincipal = new javax.swing.JMenu();
         jMnuCliente = new javax.swing.JMenuItem();
@@ -53,6 +58,40 @@ public class JFrmRtaPrincipal extends javax.swing.JFrame {
         jMnuVendas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jToolBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
+        jToolBar1.add(jSeparator2);
+
+        jBtnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UsersIcon.png"))); // NOI18N
+        jBtnCliente.setFocusable(false);
+        jBtnCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnCliente.setMaximumSize(new java.awt.Dimension(60, 45));
+        jBtnCliente.setMinimumSize(new java.awt.Dimension(60, 45));
+        jBtnCliente.setPreferredSize(new java.awt.Dimension(60, 45));
+        jBtnCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnClienteActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jBtnCliente);
+        jToolBar1.add(jSeparator3);
+
+        jBtnListagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ShoppingIcon.png"))); // NOI18N
+        jBtnListagem.setFocusable(false);
+        jBtnListagem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnListagem.setMaximumSize(new java.awt.Dimension(60, 45));
+        jBtnListagem.setMinimumSize(new java.awt.Dimension(60, 45));
+        jBtnListagem.setPreferredSize(new java.awt.Dimension(60, 45));
+        jBtnListagem.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnListagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnListagemActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jBtnListagem);
 
         jMnuPrincipal.setMnemonic('P');
         jMnuPrincipal.setText("Principal");
@@ -128,11 +167,13 @@ public class JFrmRtaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 234, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,6 +216,14 @@ public class JFrmRtaPrincipal extends javax.swing.JFrame {
         jDlgRtaClientes.setVisible(true); 
     }//GEN-LAST:event_jMnuClienteActionPerformed
 
+    private void jBtnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClienteActionPerformed
+        JDlgRtaClientes jDlgRtaClientes= new  JDlgRtaClientes(null, true);
+        jDlgRtaClientes.setVisible(true);         jDlgRtaClientes.setVisible(true);     }//GEN-LAST:event_jBtnClienteActionPerformed
+
+    private void jBtnListagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnListagemActionPerformed
+   JDlgRtaProdutos jDlgRtaProdutos= new  JDlgRtaProdutos(null, true);
+        jDlgRtaProdutos.setVisible(true);     }//GEN-LAST:event_jBtnListagemActionPerformed
+
    
     /**
      * @param args the command line arguments
@@ -215,6 +264,8 @@ public class JFrmRtaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnCliente;
+    private javax.swing.JButton jBtnListagem;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMnuCliente;
     private javax.swing.JMenuItem jMnuGrupo;
@@ -225,5 +276,8 @@ public class JFrmRtaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMnuUsuarios;
     private javax.swing.JMenuItem jMnuVendas;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

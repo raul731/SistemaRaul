@@ -23,8 +23,8 @@ import javax.swing.JTextField;
 
   //... varios argumentos varArdis
     //JComponent => arvore de deveração polimosfismo = pai do setEnable
-    //vetComp => vetor 
-    //for => componentes 
+    //vetComp = vetor 
+    //for = componentes 
     //laço para percorrer o os componentes do vetor 
 public class Util {
     public static void habilitar(boolean valor, JComponent ... vetComp) {
@@ -67,8 +67,8 @@ public class Util {
             return String.valueOf(num);
     }
     
-    public static int strDouble(String cad) {
-        return Integer.valueOf(cad);
+    public static Double strDouble(String cad) {
+        return Double.valueOf(cad);
     }
     
     public static String doubleStr(double num) {

@@ -7,7 +7,6 @@ package view;
 
 
 import bean.RtaCliente;
-import bean.RtaGrupo;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -21,7 +20,6 @@ public class ClienteController extends AbstractTableModel {
 
     public void setList(List lista) {
         this.lista = lista;
-        this.fireTableDataChanged();
     }
    
     public RtaCliente getBean(int row) {
@@ -86,7 +84,7 @@ public class ClienteController extends AbstractTableModel {
         if (column == 14) {
            return rtaCliente.getRtaEndereco();
         } 
-        return null;
+        return "";
     }
 
     @Override

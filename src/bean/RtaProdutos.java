@@ -1,5 +1,5 @@
 package bean;
-// Generated 22/09/2023 23:51:17 by Hibernate Tools 4.3.1
+// Generated 19/10/2023 21:48:07 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -25,20 +25,22 @@ public class RtaProdutos  implements java.io.Serializable {
      private int idrtaProdutos;
      private int rtaGrupo;
      private String rtaNome;
-     private BigDecimal rtaValor;
+     private double rtaValor;
+     private String rtaDescricao;
     
 
     public RtaProdutos() {
     }
 
 	
-    public RtaProdutos(int idrtaProdutos, int rtaGrupo, String rtaNome, BigDecimal rtaValor) {
+    public RtaProdutos(int idrtaProdutos, int rtaGrupo, String rtaNome, double rtaValor, String rtaDescricao) {
         this.idrtaProdutos = idrtaProdutos;
         this.rtaGrupo = rtaGrupo;
         this.rtaNome = rtaNome;
         this.rtaValor = rtaValor;
+        this.rtaDescricao = rtaDescricao;
     }
-  
+   
    
      @Id 
 
@@ -74,12 +76,22 @@ public class RtaProdutos  implements java.io.Serializable {
 
     
     @Column(name="rta_valor", nullable=false, precision=10)
-    public BigDecimal getRtaValor() {
+    public double getRtaValor() {
         return this.rtaValor;
     }
     
-    public void setRtaValor(BigDecimal rtaValor) {
+    public void setRtaValor(double rtaValor) {
         this.rtaValor = rtaValor;
+    }
+
+    
+    @Column(name="rta_descricao", nullable=false, length=45)
+    public String getRtaDescricao() {
+        return this.rtaDescricao;
+    }
+    
+    public void setRtaDescricao(String rtaDescricao) {
+        this.rtaDescricao = rtaDescricao;
     }
 
 

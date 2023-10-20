@@ -15,10 +15,7 @@ import tools.Util;
  * @author 
  */
 public class JDlgRtaGrupoIA extends javax.swing.JDialog {
-    JDlgRtaGrupo jDlgRtaGrupo;
-    boolean incluindo;
-    MaskFormatter mascaraCpf;  
-    MaskFormatter mascaraDataNascimento;
+    RtaGrupo rtaGrupo;
     RtaGrupo_DAO rtaGrupo_DAO;
     
     /**
@@ -26,29 +23,30 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
      */
     public JDlgRtaGrupoIA(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        setTitle("GrupoIA");
-         setLocationRelativeTo(null);
         initComponents();
+        setTitle("Inclusão e Alteração de Grupos");
+        setLocationRelativeTo(null);
+        rtaGrupo_DAO = new RtaGrupo_DAO();
+      
     }
     public RtaGrupo viewBean(){
-  RtaGrupo rtaGrupo = new RtaGrupo();
+    rtaGrupo = new RtaGrupo();
+    
     rtaGrupo.setIdrtaGrupo(Util.strInt(jTxtcodigo.getText()));
     rtaGrupo.setRtaDescricao(jtxtDesc.getText());
-   // rtaGrupo.setRtaMassa(jCboMassa.getSelectedIndex());
-   // rtaGrupo.setRtaRecheio(jCboRecheio.getSelectedIndex());
+    rtaGrupo.setRtaMassa(jCboMassa.getSelectedIndex());
+    rtaGrupo.setRtaRecheio(jCboRecheio.getSelectedIndex());
     rtaGrupo.setRtaDecoracao(jTxtDecoracao.getText());
    
-   
-    
         return rtaGrupo;
     }
     public void beanView(RtaGrupo rtaGrupo){
-        String cad = String.valueOf(rtaGrupo.getIdrtaGrupo());
-        jTxtcodigo.setText(cad);
+        
+        jTxtcodigo.setText(Util.intStr(rtaGrupo.getIdrtaGrupo()));
         jtxtDesc.setText(rtaGrupo.getRtaDescricao());
         jTxtDecoracao.setText(rtaGrupo.getRtaDecoracao());
-       // jCboRecheio.setSelectedIndex(rtaGrupo.getRtaRecheio());
-       // jCboMassa.setSelectedIndex(rtaGrupo.getRtaMassa());
+        jCboRecheio.setSelectedIndex(rtaGrupo.getRtaRecheio());
+        jCboMassa.setSelectedIndex(rtaGrupo.getRtaMassa());
         
         
     }
@@ -109,12 +107,12 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
                 .addComponent(jBtnCancelar)
                 .addGap(86, 86, 86)
                 .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 21, Short.MAX_VALUE)
+                .addGap(0, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnCancelar)
                     .addComponent(jBtnOk)))
@@ -136,24 +134,28 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTxtcodigo)
                     .addComponent(jtxtDesc)
                     .addComponent(jCboMassa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jCboRecheio, 0, 620, Short.MAX_VALUE)
                     .addComponent(jTxtDecoracao)
-                    .addComponent(jTxtcodigo)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel4))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtxtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,11 +171,7 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTxtDecoracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -181,10 +179,12 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-          RtaGrupo rtaGrupo = viewBean();
-        rtaGrupo_DAO.insert(rtaGrupo);
-        setVisible(false);
-        incluindo = true;
+         setVisible(false);
+         rtaGrupo = viewBean();
+              
+         rtaGrupo_DAO.insert(rtaGrupo);
+   
+         Util.limparCampos(); 
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed

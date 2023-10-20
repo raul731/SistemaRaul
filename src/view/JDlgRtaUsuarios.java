@@ -32,13 +32,12 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
     public JDlgRtaUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
-        
-        rtaUsuarios_DAO = new RtaUsuarios_DAO();
-        
+        initComponents();
         Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtApelido, jFmtCpf, jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo,jBtnCancelar,jBtnConfirmar);
         Util.habilitar(true, jBtnIncluir,jBtnAlterar,jBtnExclu,jBtnPesq);
         setTitle("Usuarios");
         setLocationRelativeTo(null);
+        rtaUsuarios_DAO = new RtaUsuarios_DAO();
         try {
             mascaraCPF = new MaskFormatter("###.###.###-##");
             mascaraDataNascimento = new MaskFormatter("##/##/####");
@@ -51,7 +50,8 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
     }
     
     public RtaUsuarios viewBean() {
-        RtaUsuarios rtaUsuarios = new RtaUsuarios();
+       rtaUsuarios = new RtaUsuarios();
+        
         rtaUsuarios.setIdrtaUsuarios(Util.strInt(jTxtCodigo.getText()));
         rtaUsuarios.setRtaNome(jTxtNome.getText());
         rtaUsuarios.setRtaApelido(jTxtApelido.getText());
@@ -73,11 +73,11 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
         jTxtApelido.setText(rtaUsuarios.getRtaApelido());
         jPwfSenha.setText(rtaUsuarios.getRtaSenha());
         jCboNivel.setSelectedIndex(rtaUsuarios.getRtaNivel());
-        if (rtaUsuarios.getRtaAtivo().equals("S") == true) {
-            jChbAtivo.setSelected(true);
-        } else {
-            jChbAtivo.setSelected(false);
-        }
+       if (rtaUsuarios.getRtaAtivo().equals("S") == true) {
+           jChbAtivo.setSelected(true);
+       } else {
+           jChbAtivo.setSelected(false);
+       }
      
         
     }
@@ -139,7 +139,7 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
 
         jLabel3.setText("Apelido");
 
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ConfirmIcon.png"))); // NOI18N
         jBtnConfirmar.setText("Confirmar");
@@ -181,7 +181,7 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
             }
         });
 
-        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-button-inside-black-circle.png"))); // NOI18N
+        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ConfirmIcon.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
         jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,6 +312,8 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExclu, jBtnPesq);
         Util.limparCampos(jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNascimento,
                 jPwfSenha, jCboNivel, jChbAtivo);
+        Util.mensagem("Cancelamento concluido");
+
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -347,20 +349,24 @@ public class JDlgRtaUsuarios extends javax.swing.JDialog {
 
         Util.limparCampos(jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNascimento,
                 jPwfSenha, jCboNivel, jChbAtivo);
+      Util.habilitar(true, jBtnIncluir, jBtnPesq, jBtnAlterar, jBtnExclu);
+     Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataNascimento, jPwfSenha, jCboNivel, jChbAtivo, jBtnCancelar, jBtnConfirmar);
+    
     }//GEN-LAST:event_jBtnExcluActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
 Util.habilitar(true, jTxtNome, jTxtApelido, jFmtCpf, jTxtCodigo, jBtnCancelar,jBtnConfirmar,jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo);
-        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExclu, jBtnPesq);
+Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExclu, jBtnPesq);
             incluindo = false;        
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnPesqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesqActionPerformed
-Util.habilitar(true, jTxtNome, jTxtApelido, jFmtCpf, jTxtCodigo, jBtnCancelar,jBtnConfirmar,jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo);
- Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExclu, jBtnPesq);
-         UsuariosPesquisa usuariosPesquisa = new UsuariosPesquisa(null, true);
+Util.habilitar(false, jTxtNome, jTxtApelido, jFmtCpf, jTxtCodigo, jBtnCancelar,jBtnConfirmar,jFmtDataNascimento,jPwfSenha,jCboNivel,jChbAtivo, jBtnIncluir, jBtnPesq);
+   Util.habilitar(true, jBtnConfirmar, jBtnAlterar, jBtnExclu, jBtnCancelar);
+         
+ UsuariosPesquisa usuariosPesquisa = new UsuariosPesquisa(null, true);
       
-         usuariosPesquisa.setTelaAnterior(this);
+        usuariosPesquisa.setTelaAnterior(this);
         usuariosPesquisa.setVisible(true);
 
 

@@ -20,8 +20,7 @@ public class JDlgRtaProdutos extends javax.swing.JDialog {
     RtaProduto_DAO rtaProduto_DAO;
     RtaProdutos rtaProdutos;
     ProdutosController produtosController;
-    private JDlgRtaProdutos jDlgRtaProdutos;
-    JDlgRtaProdutos jDlgRtaProdutos1 = new JDlgRtaProdutos(null, true);
+
     
     
     /**
@@ -30,16 +29,17 @@ public class JDlgRtaProdutos extends javax.swing.JDialog {
     public JDlgRtaProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("produtos");
         jDlgRtaProdutosIA = new JDlgRtaProdutosIA(null, true);
-        
-        jDlgRtaProdutos = new JDlgRtaProdutos(null, true);
+        setTitle("produtos");
+        setLocationRelativeTo(null);
+ 
         produtosController = new ProdutosController();
         rtaProduto_DAO = new RtaProduto_DAO();
+        
         List lista = rtaProduto_DAO.listAll();
         produtosController.setList(lista);
         jTable1.setModel(produtosController);
-        setLocationRelativeTo(null);
+       
     }
 
     /**
@@ -73,7 +73,7 @@ public class JDlgRtaProdutos extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-button-inside-black-circle.png"))); // NOI18N
+        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ConfirmIcon.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
         jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +131,7 @@ public class JDlgRtaProdutos extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -139,8 +139,12 @@ public class JDlgRtaProdutos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-       jDlgRtaProdutosIA.setTitle("inclusao");
-       jDlgRtaProdutosIA.setVisible(true);
+     jDlgRtaProdutosIA.setTitle("Inclusão");
+     jDlgRtaProdutosIA.setVisible(true);
+        
+     List lista= rtaProduto_DAO.listAll();
+     produtosController.setList(lista);
+     jTable1.setModel(produtosController);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
@@ -151,14 +155,9 @@ if (Util.perguntar("Deseja execluir o registro") == true) {
             //atualizar a lista no jTable 
             List lista = rtaProduto_DAO.listAll();
             produtosController.setList(lista);
-        } else {
-          Util.mensagem("Exclusão cancelada");
-        }
-
-
-
-
-
+          } else {
+             Util.mensagem("Exclusão cancelada");
+          }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed

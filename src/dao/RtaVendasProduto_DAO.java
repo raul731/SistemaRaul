@@ -22,7 +22,7 @@ public class RtaVendasProduto_DAO extends DAO_Abstract{
     public void insert(Object object) {
       session.beginTransaction();
       session.save(object);
-      session.beginTransaction().commit();
+      session.getTransaction().commit();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class RtaVendasProduto_DAO extends DAO_Abstract{
       session.flush();                    //serve pra não atualiza antes da operação em si Clear limpa a memória do hibernate
       session.clear();                  // Flush obriga o hibernate a escrever os dados no disco ouno Banco de dados.
       session.update(object);
-      session.beginTransaction().commit();
+      session.getTransaction().commit();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class RtaVendasProduto_DAO extends DAO_Abstract{
        session.clear();
       session.update(object);
       session.delete(object);
-      session.beginTransaction().commit();
+      session.getTransaction().commit();
     }
 
     @Override

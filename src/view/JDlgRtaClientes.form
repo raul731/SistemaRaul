@@ -32,10 +32,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="RG" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jFmtRg" alignment="0" pref="200" max="32767" attributes="0"/>
                                   <Component id="pais" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jFmtCep" alignment="0" pref="200" max="32767" attributes="0"/>
-                                  <Component id="jFmtCpf" alignment="0" pref="200" max="32767" attributes="0"/>
                                   <Component id="Cep" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="rua" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTxtRua" alignment="0" pref="200" max="32767" attributes="0"/>
@@ -45,6 +43,8 @@
                                   <Component id="jCboPais" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTxtCodigo" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jFmtCpf" max="32767" attributes="0"/>
+                                  <Component id="jFmtRg" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -56,12 +56,14 @@
                                   <Component id="jTxtComple" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                   <Component id="genero" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="cell" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTxtCell" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                   <Component id="tell" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTxtTell" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                   <Component id="jtxtGenero" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                   <Component id="jTxtEstadoC" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jCboEstadoC" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jFmtCelular" alignment="0" pref="200" max="32767" attributes="0"/>
+                                      <Component id="jFmtTel" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Component id="jTxtNumRua" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
@@ -103,12 +105,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cell" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTxtCell" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFmtCelular" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tell" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTxtTell" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jFmtTel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="jTxtEstadoC" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jCboEstadoC" min="-2" max="-2" attributes="0"/>
@@ -127,9 +129,9 @@
                       <Component id="jFmtCpf" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="RG" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Component id="jFmtRg" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="pais" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jCboPais" min="-2" max="-2" attributes="0"/>
@@ -147,7 +149,7 @@
               <Component id="endere1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTxtNumRua" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -169,11 +171,6 @@
         <Property name="text" type="java.lang.String" value="cpf"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jFmtCpf">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFmtCpfActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="pais">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pais"/>
@@ -193,11 +190,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="RG"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jFmtRg">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFmtRgActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="rua">
       <Properties>
@@ -234,11 +226,6 @@
         <Property name="text" type="java.lang.String" value="Celular"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtCell">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtCellActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="comple">
       <Properties>
         <Property name="text" type="java.lang.String" value="Complemento (Opcional)"/>
@@ -268,11 +255,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Estado Civil"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTxtTell">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtTellActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jCboEstadoC">
       <Properties>
@@ -321,13 +303,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBtnInclu" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBtnIncluir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jBtnAlte" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBtnAlterar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jBtnExclu" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBtnExcluir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jBtnConf" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBtnConfirmar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jBtnCancelar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -343,10 +325,10 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBtnPesq" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBtnConf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBtnExclu" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBtnAlte" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBtnInclu" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -375,7 +357,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCancelarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jBtnConf">
+        <Component class="javax.swing.JButton" name="jBtnConfirmar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/ConfirmIcon.png"/>
@@ -383,10 +365,10 @@
             <Property name="text" type="java.lang.String" value="Confirmar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnConfActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnConfirmarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jBtnExclu">
+        <Component class="javax.swing.JButton" name="jBtnExcluir">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/DeleteIcon.png"/>
@@ -394,10 +376,10 @@
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnExcluActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnExcluirActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jBtnAlte">
+        <Component class="javax.swing.JButton" name="jBtnAlterar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/EditIcon.png"/>
@@ -405,18 +387,18 @@
             <Property name="text" type="java.lang.String" value="Alterar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnAlteActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnAlterarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jBtnInclu">
+        <Component class="javax.swing.JButton" name="jBtnIncluir">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/add-button-inside-black-circle.png"/>
+              <Image iconType="3" name="/img/ConfirmIcon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Incluir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnIncluActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnIncluirActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -436,6 +418,17 @@
     <Component class="javax.swing.JTextField" name="jTxtNumRua">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtNumRuaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFmtCpf">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFmtTel">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFmtCelular">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFmtRg">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFmtRgActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

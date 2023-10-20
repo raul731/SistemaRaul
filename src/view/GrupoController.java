@@ -55,7 +55,7 @@ public class GrupoController extends AbstractTableModel {
         if (column == 4) {
            return rtaGrupo.getRtaDecoracao();
         } 
-        return null;
+        return "";
     }
 
     @Override

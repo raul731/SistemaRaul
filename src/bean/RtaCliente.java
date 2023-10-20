@@ -1,5 +1,5 @@
 package bean;
-// Generated 22/09/2023 23:51:17 by Hibernate Tools 4.3.1
+// Generated 19/10/2023 21:48:07 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -35,8 +35,8 @@ public class RtaCliente  implements java.io.Serializable {
      private String rtaGenero;
      private String rtaCelular;
      private String rtaTelefone;
-     private Integer rtaEstadoCivil;
-  
+     private int rtaEstadoCivil;
+   
 
     public RtaCliente() {
     }
@@ -56,6 +56,7 @@ public class RtaCliente  implements java.io.Serializable {
         this.rtaGenero = rtaGenero;
         this.rtaCelular = rtaCelular;
     }
+   
    
      @Id 
 
@@ -201,11 +202,11 @@ public class RtaCliente  implements java.io.Serializable {
 
     
     @Column(name="rta_estadoCivil")
-    public Integer getRtaEstadoCivil() {
+    public int getRtaEstadoCivil() {
         return this.rtaEstadoCivil;
     }
     
-    public void setRtaEstadoCivil(Integer rtaEstadoCivil) {
+    public void setRtaEstadoCivil(int rtaEstadoCivil) {
         this.rtaEstadoCivil = rtaEstadoCivil;
     }
 

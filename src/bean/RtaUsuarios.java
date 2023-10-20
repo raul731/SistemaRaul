@@ -1,5 +1,5 @@
 package bean;
-// Generated 22/09/2023 23:51:17 by Hibernate Tools 4.3.1
+// Generated 19/10/2023 21:48:07 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -31,14 +31,14 @@ public class RtaUsuarios  implements java.io.Serializable {
      private Date rtaDataNascimento;
      private String rtaSenha;
      private int rtaNivel;
-     private int rtaAtivo;
+     private String rtaAtivo;
    
 
     public RtaUsuarios() {
     }
 
 	
-    public RtaUsuarios(int idrtaUsuarios, String rtaNome, String rtaApelido, String rtaCpf, Date rtaDataNascimento, String rtaSenha, int rtaNivel, int rtaAtivo) {
+    public RtaUsuarios(int idrtaUsuarios, String rtaNome, String rtaApelido, String rtaCpf, Date rtaDataNascimento, String rtaSenha, int rtaNivel, String rtaAtivo) {
         this.idrtaUsuarios = idrtaUsuarios;
         this.rtaNome = rtaNome;
         this.rtaApelido = rtaApelido;
@@ -123,12 +123,12 @@ public class RtaUsuarios  implements java.io.Serializable {
     }
 
     
-    @Column(name="rta_ativo", nullable=false)
-    public int getRtaAtivo() {
+    @Column(name="rta_ativo", nullable=false, length=1)
+    public String getRtaAtivo() {
         return this.rtaAtivo;
     }
     
-    public void setRtaAtivo(int rtaAtivo) {
+    public void setRtaAtivo(String rtaAtivo) {
         this.rtaAtivo = rtaAtivo;
     }
 

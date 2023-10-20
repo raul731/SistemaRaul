@@ -1,5 +1,5 @@
 package bean;
-// Generated 22/09/2023 23:51:17 by Hibernate Tools 4.3.1
+// Generated 19/10/2023 21:48:07 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -31,14 +31,14 @@ public class RtaVendas  implements java.io.Serializable {
      private RtaCliente rtaCliente;
      private RtaUsuarios rtaUsuarios;
      private Date rtaData;
-     private BigDecimal rtaValorTotal;
-    
+     private double rtaValorTotal;
+ 
 
     public RtaVendas() {
     }
 
 	
-    public RtaVendas(int idrtaVendas, RtaCliente rtaCliente, RtaUsuarios rtaUsuarios, Date rtaData, BigDecimal rtaValorTotal) {
+    public RtaVendas(int idrtaVendas, RtaCliente rtaCliente, RtaUsuarios rtaUsuarios, Date rtaData, double rtaValorTotal) {
         this.idrtaVendas = idrtaVendas;
         this.rtaCliente = rtaCliente;
         this.rtaUsuarios = rtaUsuarios;
@@ -91,11 +91,11 @@ public class RtaVendas  implements java.io.Serializable {
 
     
     @Column(name="rta_valorTotal", nullable=false, precision=10)
-    public BigDecimal getRtaValorTotal() {
+    public double getRtaValorTotal() {
         return this.rtaValorTotal;
     }
     
-    public void setRtaValorTotal(BigDecimal rtaValorTotal) {
+    public void setRtaValorTotal(double rtaValorTotal) {
         this.rtaValorTotal = rtaValorTotal;
     }
 

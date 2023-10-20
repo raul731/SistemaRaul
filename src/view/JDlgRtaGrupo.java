@@ -19,19 +19,20 @@ public class JDlgRtaGrupo extends javax.swing.JDialog {
     RtaGrupo_DAO rtaGrupo_DAO;
     RtaGrupo rtaGrupo;
     GrupoController grupoController;
-    private JDlgRtaGrupoIA jDlgRtaGrupoIA;
+    JDlgRtaGrupoIA jDlgRtaGrupoIA;
     /**
      * Creates new form JDlgRtaGrupo
      */
     public JDlgRtaGrupo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        setTitle("grupo");
         initComponents();
+        jDlgRtaGrupoIA = new JDlgRtaGrupoIA(null, true);
+        setTitle("Grupo dos Produtos"); 
         setLocationRelativeTo(null);
         
-        jDlgRtaGrupoIA = new JDlgRtaGrupoIA(null, true);
         grupoController = new GrupoController();
         rtaGrupo_DAO = new RtaGrupo_DAO();
+        
         List lista = rtaGrupo_DAO.listAll();
         grupoController.setList(lista);
         jTable1.setModel(grupoController);
@@ -57,7 +58,7 @@ public class JDlgRtaGrupo extends javax.swing.JDialog {
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-button-inside-black-circle.png"))); // NOI18N
+        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ConfirmIcon.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
         jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,14 +139,17 @@ public class JDlgRtaGrupo extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         jDlgRtaGrupoIA.setTitle("inclusao");
         jDlgRtaGrupoIA.setVisible(true);
+        
+        List lista = rtaGrupo_DAO.listAll();
+        grupoController.setList(lista);
+        jTable1.setModel(grupoController);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         if (Util.perguntar("Deseja excluir o registro?") == true) {
             int sel = jTable1.getSelectedRow();
             rtaGrupo = grupoController.getBean(sel);
-            rtaGrupo_DAO.delete(rtaGrupo);
-            //atualizar a lista no jtable
+            rtaGrupo_DAO.delete(rtaGrupo);       
             List lista = rtaGrupo_DAO.listAll();
             grupoController.setList(lista);
         } else {
@@ -154,8 +158,7 @@ public class JDlgRtaGrupo extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        jDlgRtaGrupoIA.setTitle("Alteração");
-        jDlgRtaGrupoIA.setVisible(true);
+        
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     /**

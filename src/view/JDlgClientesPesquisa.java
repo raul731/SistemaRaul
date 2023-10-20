@@ -17,7 +17,8 @@ import java.util.List;
 public class JDlgClientesPesquisa extends javax.swing.JDialog {
 
     private JDlgRtaClientes jDlgRtaClientes;
-    private ClienteController clienteController;
+    ClienteController clienteController;
+    private RtaClientes_DAO  rtaClientes_DAO;
    
     /**
      * Creates new form JDlgUsuariosPesquisa
@@ -25,12 +26,14 @@ public class JDlgClientesPesquisa extends javax.swing.JDialog {
     public JDlgClientesPesquisa(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
         clienteController = new ClienteController();
-        RtaClientes_DAO rtaclientes_DAO = new RtaClientes_DAO();
-        List lista = rtaclientes_DAO.listAll();
+       RtaClientes_DAO rtaClientes_DAO = new RtaClientes_DAO();
+        List lista = rtaClientes_DAO.listAll();
         clienteController.setList(lista);
         jTable1.setModel(clienteController);
-        setTitle("Registro de Usuarios");
+        
+        setTitle("Registro de Clientes");
         setLocationRelativeTo(null);
     }
 
@@ -67,7 +70,7 @@ public class JDlgClientesPesquisa extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
+        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/CancelIcon.png"))); // NOI18N
         jBtnCancelar.setText("CANCELAR");
         jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +78,7 @@ public class JDlgClientesPesquisa extends javax.swing.JDialog {
             }
         });
 
-        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
+        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ConfirmIcon.png"))); // NOI18N
         jBtnOk.setText("OK");
         jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

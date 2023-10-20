@@ -5,9 +5,9 @@
  */
 package view;
 
-import bean.RtaCliente;
+
 import bean.RtaProdutos;
-import dao.RtaClientes_DAO;
+
 import dao.RtaProduto_DAO;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -20,16 +20,11 @@ import tools.Util;
  *
  * @author Usuario
  */
-public class JDlgRtaProdutosIA extends javax.swing.JDialog {
-
-     MaskFormatter mascaraCPF;
-    private boolean incluindo;
-    public RtaProdutos rtaProdutos;
-    public RtaProduto_DAO rtaProduto_DAO;
-    JDlgRtaProdutos jDlgRtaProdutos;
-    
-    //variaveis usadas para formatação de caompos formatados
-    RtaProduto_DAO produto_DAO;
+public class JDlgRtaProdutosIA extends javax.swing.JDialog {   
+   
+     RtaProdutos rtaProdutos;
+     RtaProduto_DAO rtaProduto_DAO;
+   
     
     
     /**
@@ -39,15 +34,27 @@ public class JDlgRtaProdutosIA extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Produtos");
-         Util.habilitar(true,jTxtNome, jTxtPreco,jCboGrupo, jBtnOk, jBtnCancelar);
-        
-        
-        
-         
-      
         setLocationRelativeTo(null);
     }
-
+    public RtaProdutos viewBean(){
+    
+        rtaProdutos = new RtaProdutos();
+        
+        rtaProdutos.setIdrtaProdutos(Util.strInt(jTxtId.getText()));
+        rtaProdutos.setRtaDescricao(jTxtDesc.getText());
+        rtaProdutos.setRtaNome(jTxtNome.getText());
+        rtaProdutos.setRtaGrupo(jCboGrupo.getSelectedIndex());
+        rtaProdutos.setRtaValor(Util.strDouble(jTxtPreco.getText()));
+        
+        return rtaProdutos;              
+    } 
+    public void beanView(RtaProdutos rtaProdutos){
+        jTxtId.setText(Util.intStr(rtaProdutos.getIdrtaProdutos()));
+        jTxtPreco.setText(Util.doubleStr(rtaProdutos.getRtaValor()));
+        jTxtDesc.setText(rtaProdutos.getRtaDescricao());
+        jTxtNome.setText(rtaProdutos.getRtaNome());
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +73,10 @@ public class JDlgRtaProdutosIA extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jTxtPreco = new javax.swing.JTextField();
         jCboGrupo = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jTxtId = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTxtDesc = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -119,6 +130,22 @@ public class JDlgRtaProdutosIA extends javax.swing.JDialog {
 
         jCboGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "brigadeiro", "bala baiana", "pão de mel", "maça do amor", " " }));
 
+        jLabel4.setText("ID");
+
+        jTxtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtIdActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Descrição (Opicionaal)");
+
+        jTxtDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtDescActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,16 +161,24 @@ public class JDlgRtaProdutosIA extends javax.swing.JDialog {
                             .addComponent(jLabel3))
                         .addContainerGap(149, Short.MAX_VALUE))
                     .addComponent(jTxtPreco)
+                    .addComponent(jTxtId)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jCboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jCboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTxtDesc)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,7 +190,11 @@ public class JDlgRtaProdutosIA extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -172,7 +211,19 @@ public class JDlgRtaProdutosIA extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         setVisible(false);
+        rtaProdutos = viewBean();
+        rtaProduto_DAO = new RtaProduto_DAO();
+        rtaProduto_DAO.insert(rtaProdutos);
+        Util.limparCampos(jTxtId,jTxtDesc,jTxtNome,jTxtPreco);
     }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jTxtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtIdActionPerformed
+
+    private void jTxtDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtDescActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtDescActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,7 +275,11 @@ public class JDlgRtaProdutosIA extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTxtDesc;
+    private javax.swing.JTextField jTxtId;
     private javax.swing.JTextField jTxtNome;
     private javax.swing.JTextField jTxtPreco;
     // End of variables declaration//GEN-END:variables
