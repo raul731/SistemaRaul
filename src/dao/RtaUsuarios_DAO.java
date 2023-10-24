@@ -59,5 +59,36 @@ List lista = criteria.list();                                   //seria o msm qu
 session.getTransaction().commit();
 return (ArrayList) lista;
 }
+ public List listNome(String nome){
+        
+         session.beginTransaction();
+    Criteria crit = session.createCriteria(RtaUsuarios.class);
+crit.add(Restrictions.like("drfNome", "%"+nome+"%"));
+List lista = crit.list();
+  session.getTransaction().commit();
+return lista;
+    
+    }
+    public List listCpf(String cpf){
+        
+         session.beginTransaction();
+    Criteria crit = session.createCriteria(RtaUsuarios.class);
+crit.add(Restrictions.like("drfCpf", "%"+cpf+"%"));
+List lista = crit.list();
+  session.getTransaction().commit();
+return lista;
+    
+    }
+      public List listNomeCpf(String cpf, String nome){
+        
+         session.beginTransaction();
+    Criteria crit = session.createCriteria(RtaUsuarios.class);
+    crit.add(Restrictions.like("drfNome", "%"+nome+"%"));
+crit.add(Restrictions.like("drfCpf", "%"+cpf+"%"));
+List lista = crit.list();
+  session.getTransaction().commit();
+return lista;
+    
+    }
 
 }
