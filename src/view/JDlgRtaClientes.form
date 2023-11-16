@@ -50,8 +50,6 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jTxtEndereco" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                   <Component id="endere" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTxtBairro" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="bairro" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="comple" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTxtComple" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                   <Component id="genero" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -64,12 +62,23 @@
                                       <Component id="jFmtCelular" alignment="0" pref="200" max="32767" attributes="0"/>
                                       <Component id="jFmtTel" alignment="0" max="32767" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jTxtBairro" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <Component id="bairro" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jFmtData" min="-2" pref="151" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                           <Component id="jTxtNumRua" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           <Component id="endere1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="131" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -82,9 +91,15 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="bairro" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="bairro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTxtBairro" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTxtBairro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFmtData" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -430,6 +445,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFmtRgActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFmtData">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Data Nascimenro"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

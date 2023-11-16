@@ -4,36 +4,37 @@
  * and open the template in the editor.
  */
 package query;
-import dao.RtaUsuarios_DAO;
+import dao.RtaGrupo_DAO;
+import dao.RtaGrupo_DAO;
 import java.lang.String;
-import java.util.Date;
 import java.util.List;
 import tools.Util;
-import view.JDlgRtaUsuarios;
-import view.UsuariosController;
+import view.ClienteController;
+import view.GrupoController;
+import view.JDlgRtaGrupo;
 
 /**
  *
  * @author u10154925179
  */
-public class JDlgConsultaUsuarios extends javax.swing.JDialog {
-private JDlgRtaUsuarios jDlgRtaUsuarios;
-    RtaUsuarios_DAO rtaUsuarios_DAO;
-    UsuariosController usuariosController;
+public class JDlgConsultaGrupo extends javax.swing.JDialog {
+private JDlgRtaGrupo jDlgRtaGrupo;
+    RtaGrupo_DAO rtaGrupo_DAO;
+    GrupoController grupoController;
     /**
      * Creates new form JDlgConsultaUsuarios
      */
-    public JDlgConsultaUsuarios(java.awt.Frame parent, boolean modal) {
+    public JDlgConsultaGrupo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
          initComponents();
-         setTitle("Consulta de Usuarios");
+         setTitle("Consulta de Grupos");
         setLocationRelativeTo(null);
         
-        rtaUsuarios_DAO = new RtaUsuarios_DAO();
-        usuariosController = new UsuariosController();    
-        List lista = rtaUsuarios_DAO.listAll();
-        usuariosController.setList(lista);
-        jTable1.setModel(usuariosController);
+         rtaGrupo_DAO = new  RtaGrupo_DAO();
+       grupoController = new GrupoController();    
+        List lista =  rtaGrupo_DAO.listAll();
+       grupoController.setList(lista);
+        jTable1.setModel(grupoController);
         
         
        
@@ -53,10 +54,10 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
         jTextArea1 = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTxtNome = new javax.swing.JTextField();
+        jTxtDesc = new javax.swing.JTextField();
         jBtnConsultar = new javax.swing.JButton();
+        jTxtQuant = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jFmtData = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -68,7 +69,7 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText("Nome");
+        jLabel1.setText("Descrição");
 
         jBtnConsultar.setText("CONSULTAR");
         jBtnConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +78,7 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
             }
         });
 
-        jLabel2.setText("Data de Nascimento");
+        jLabel2.setText("Quantidade");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,12 +87,12 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTxtQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                         .addComponent(jBtnConsultar)
                         .addGap(34, 34, 34))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -106,9 +107,9 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
                     .addComponent(jLabel2))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnConsultar)
-                    .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtQuant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 13, Short.MAX_VALUE))
         );
 
@@ -144,27 +145,26 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
-    List lista = rtaUsuarios_DAO.listAll();
-    usuariosController.setList(lista);
-    } else {
-    if (!jTxtNome.getText().equals("") && !jFmtData.getText().equals("")) {
-        Date data = Util.strDate(jFmtData.getText());
-        List lista = rtaUsuarios_DAO.listNomeData(jTxtNome.getText(), data);
-        usuariosController.setList(lista);
-    } else {
-        if (!jTxtNome.getText().equals("")) {
-            List lista = rtaUsuarios_DAO.listNome(jTxtNome.getText());
-            usuariosController.setList(lista);
+if(!jTxtDesc.getText().equals("")){
+        List lista=  rtaGrupo_DAO.listDesc(jTxtDesc.getText());
+        grupoController.setList(lista);
+} else{
+    if (jTxtDesc.getText().equals("") && jTxtQuant.getText().equals("")){
+         List list =  rtaGrupo_DAO.listDescQuantidade((Util.strDouble(jTxtQuant.getText())), jTxtDesc.getText());
+         grupoController.setList(list);
         }
-        if (!jFmtData.getText().equals("")) {
-            // Remova a conversão para double, utilize diretamente o método StrDate
-            Date data = Util.strDate(jFmtData.getText());
-            List lista = rtaUsuarios_DAO.listData(data);
-            usuariosController.setList(lista);
         }
-    }
-}
+if (jTxtQuant.getText().equals("")&& jTxtDesc.getText().equals("") ){
+         List lista =  rtaGrupo_DAO.listQuantidade ((Util.strDouble(jTxtQuant.getText())));
+         grupoController.setList(lista);
+         }
+
+else{
+if (!jTxtQuant.getText().equals("")){
+         List lista =  rtaGrupo_DAO.listQuantidade((Util.strDouble(jTxtQuant.getText())));
+         grupoController.setList(lista);
+             }
+        }
     }//GEN-LAST:event_jBtnConsultarActionPerformed
 
     /**
@@ -184,20 +184,27 @@ if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgConsultaUsuarios dialog = new JDlgConsultaUsuarios(new javax.swing.JFrame(), true);
+                JDlgConsultaGrupo dialog = new JDlgConsultaGrupo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -211,7 +218,6 @@ if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsultar;
-    private javax.swing.JFormattedTextField jFmtData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -219,6 +225,7 @@ if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTxtNome;
+    private javax.swing.JTextField jTxtDesc;
+    private javax.swing.JTextField jTxtQuant;
     // End of variables declaration//GEN-END:variables
 }

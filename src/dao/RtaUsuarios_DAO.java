@@ -7,6 +7,7 @@ package dao;
 
 import bean.RtaUsuarios;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -63,32 +64,29 @@ return (ArrayList) lista;
         
          session.beginTransaction();
     Criteria crit = session.createCriteria(RtaUsuarios.class);
-crit.add(Restrictions.like("drfNome", "%"+nome+"%"));
+crit.add(Restrictions.like("rtaNome", "%"+nome+"%"));
 List lista = crit.list();
   session.getTransaction().commit();
 return lista;
     
     }
-    public List listCpf(String cpf){
-        
-         session.beginTransaction();
-    Criteria crit = session.createCriteria(RtaUsuarios.class);
-crit.add(Restrictions.like("drfCpf", "%"+cpf+"%"));
-List lista = crit.list();
-  session.getTransaction().commit();
-return lista;
-    
+     public List listData(Date data) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(RtaUsuarios.class);
+        criteria.add(Restrictions.eq("rtaDataNascimento", data));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
     }
-      public List listNomeCpf(String cpf, String nome){
-        
-         session.beginTransaction();
-    Criteria crit = session.createCriteria(RtaUsuarios.class);
-    crit.add(Restrictions.like("drfNome", "%"+nome+"%"));
-crit.add(Restrictions.like("drfCpf", "%"+cpf+"%"));
-List lista = crit.list();
-  session.getTransaction().commit();
-return lista;
-    
+
+    public List listNomeData(String nome, Date data) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(RtaUsuarios.class);
+        criteria.add(Restrictions.like("rtaNome", "%" + nome + "%"));
+        criteria.add(Restrictions.eq("rtaDataNascimento", data));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
     }
 
 }

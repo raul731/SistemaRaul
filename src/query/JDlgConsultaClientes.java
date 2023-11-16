@@ -4,36 +4,38 @@
  * and open the template in the editor.
  */
 package query;
-import dao.RtaUsuarios_DAO;
+import dao.RtaClientes_DAO;
+import dao. RtaProduto_DAO;
 import java.lang.String;
 import java.util.Date;
 import java.util.List;
 import tools.Util;
-import view.JDlgRtaUsuarios;
-import view.UsuariosController;
+import view.ClienteController;
+import view.JDlgRtaClientes;
+import view.ProdutosController;
 
 /**
  *
  * @author u10154925179
  */
-public class JDlgConsultaUsuarios extends javax.swing.JDialog {
-private JDlgRtaUsuarios jDlgRtaUsuarios;
-    RtaUsuarios_DAO rtaUsuarios_DAO;
-    UsuariosController usuariosController;
+public class JDlgConsultaClientes extends javax.swing.JDialog {
+private JDlgRtaClientes jDlgRtaClientes;
+    RtaClientes_DAO rtaClientes_DAO;
+    ClienteController clienteController;
     /**
      * Creates new form JDlgConsultaUsuarios
      */
-    public JDlgConsultaUsuarios(java.awt.Frame parent, boolean modal) {
+    public JDlgConsultaClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
          initComponents();
-         setTitle("Consulta de Usuarios");
+         setTitle("Consulta de Clientess");
         setLocationRelativeTo(null);
         
-        rtaUsuarios_DAO = new RtaUsuarios_DAO();
-        usuariosController = new UsuariosController();    
-        List lista = rtaUsuarios_DAO.listAll();
-        usuariosController.setList(lista);
-        jTable1.setModel(usuariosController);
+         rtaClientes_DAO = new  RtaClientes_DAO();
+       clienteController = new ClienteController();    
+        List lista =  rtaClientes_DAO.listAll();
+       clienteController.setList(lista);
+        jTable1.setModel(clienteController);
         
         
        
@@ -77,7 +79,7 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
             }
         });
 
-        jLabel2.setText("Data de Nascimento");
+        jLabel2.setText("Data Nascimento");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,23 +147,23 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
 if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
-    List lista = rtaUsuarios_DAO.listAll();
-    usuariosController.setList(lista);
+    List lista = rtaClientes_DAO.listAll();
+    clienteController.setList(lista);
     } else {
     if (!jTxtNome.getText().equals("") && !jFmtData.getText().equals("")) {
         Date data = Util.strDate(jFmtData.getText());
-        List lista = rtaUsuarios_DAO.listNomeData(jTxtNome.getText(), data);
-        usuariosController.setList(lista);
+        List lista = rtaClientes_DAO.listNomeData(jTxtNome.getText(), data);
+        clienteController.setList(lista);
     } else {
         if (!jTxtNome.getText().equals("")) {
-            List lista = rtaUsuarios_DAO.listNome(jTxtNome.getText());
-            usuariosController.setList(lista);
+            List lista = rtaClientes_DAO.listNome(jTxtNome.getText());
+            clienteController.setList(lista);
         }
         if (!jFmtData.getText().equals("")) {
             // Remova a conversão para double, utilize diretamente o método StrDate
             Date data = Util.strDate(jFmtData.getText());
-            List lista = rtaUsuarios_DAO.listData(data);
-            usuariosController.setList(lista);
+            List lista = rtaClientes_DAO.listData(data);
+            clienteController.setList(lista);
         }
     }
 }
@@ -184,20 +186,23 @@ if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgConsultaUsuarios dialog = new JDlgConsultaUsuarios(new javax.swing.JFrame(), true);
+                JDlgConsultaClientes dialog = new JDlgConsultaClientes(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -47,6 +47,7 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
         jTxtDecoracao.setText(rtaGrupo.getRtaDecoracao());
         jCboRecheio.setSelectedIndex(rtaGrupo.getRtaRecheio());
         jCboMassa.setSelectedIndex(rtaGrupo.getRtaMassa());
+            jTxtQuantidade.setText (Util.doubleStr(rtaGrupo.getRtaQuantidade()));
         
         
     }
@@ -73,6 +74,8 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
         jTxtDecoracao = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTxtcodigo = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTxtQuantidade = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -126,6 +129,8 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
 
         jLabel5.setText("codigo");
 
+        jLabel6.setText("Quantidade");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,7 +151,12 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jTxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +181,11 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTxtDecoracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -243,8 +257,10 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTxtDecoracao;
+    private javax.swing.JTextField jTxtQuantidade;
     private javax.swing.JTextField jTxtcodigo;
     private javax.swing.JTextField jtxtDesc;
     // End of variables declaration//GEN-END:variables

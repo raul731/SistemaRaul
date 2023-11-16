@@ -22,6 +22,7 @@ public class RtaGrupo  implements java.io.Serializable {
      private int rtaMassa;
      private int rtaRecheio;
      private String rtaDecoracao;
+      private double rtaQuantidade;
 
     public RtaGrupo() {
     }
@@ -33,12 +34,13 @@ public class RtaGrupo  implements java.io.Serializable {
         this.rtaMassa = rtaMassa;
         this.rtaRecheio = rtaRecheio;
     }
-    public RtaGrupo(int idrtaGrupo, String rtaDescricao, int rtaMassa, int rtaRecheio, String rtaDecoracao) {
+    public RtaGrupo(int idrtaGrupo, String rtaDescricao, int rtaMassa, int rtaRecheio, String rtaDecoracao,double rtaQuantidade) {
        this.idrtaGrupo = idrtaGrupo;
        this.rtaDescricao = rtaDescricao;
        this.rtaMassa = rtaMassa;
        this.rtaRecheio = rtaRecheio;
        this.rtaDecoracao = rtaDecoracao;
+       this.rtaQuantidade = rtaQuantidade;
     }
    
      @Id 
@@ -93,6 +95,14 @@ public class RtaGrupo  implements java.io.Serializable {
         this.rtaDecoracao = rtaDecoracao;
     }
 
+    @Column(name="rta_quantidade", nullable=false, precision=10)
+    public double getRtaQuantidade() {
+        return this.rtaQuantidade;
+    }
+    
+    public void setRtaQuantidade(double rtaQuantidade) {
+        this.rtaQuantidade = rtaQuantidade;
+    }
 
 
 

@@ -4,36 +4,37 @@
  * and open the template in the editor.
  */
 package query;
-import dao.RtaUsuarios_DAO;
+import dao.RtaProduto_DAO;
+import dao. RtaProduto_DAO;
 import java.lang.String;
-import java.util.Date;
 import java.util.List;
 import tools.Util;
-import view.JDlgRtaUsuarios;
+import view.JDlgRtaProdutos;
+import view.ProdutosController;
 import view.UsuariosController;
 
 /**
  *
  * @author u10154925179
  */
-public class JDlgConsultaUsuarios extends javax.swing.JDialog {
-private JDlgRtaUsuarios jDlgRtaUsuarios;
-    RtaUsuarios_DAO rtaUsuarios_DAO;
-    UsuariosController usuariosController;
+public class JDlgConsultaProdutos extends javax.swing.JDialog {
+private JDlgRtaProdutos jDlgRtaProdutos;
+    RtaProduto_DAO rtaProduto_DAO;
+    ProdutosController produtosController;
     /**
      * Creates new form JDlgConsultaUsuarios
      */
-    public JDlgConsultaUsuarios(java.awt.Frame parent, boolean modal) {
+    public JDlgConsultaProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
          initComponents();
          setTitle("Consulta de Usuarios");
         setLocationRelativeTo(null);
         
-        rtaUsuarios_DAO = new RtaUsuarios_DAO();
-        usuariosController = new UsuariosController();    
-        List lista = rtaUsuarios_DAO.listAll();
-        usuariosController.setList(lista);
-        jTable1.setModel(usuariosController);
+         rtaProduto_DAO = new  RtaProduto_DAO();
+        produtosController = new ProdutosController();    
+        List lista =  rtaProduto_DAO.listAll();
+        produtosController.setList(lista);
+        jTable1.setModel(produtosController);
         
         
        
@@ -55,8 +56,8 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
         jLabel1 = new javax.swing.JLabel();
         jTxtNome = new javax.swing.JTextField();
         jBtnConsultar = new javax.swing.JButton();
+        jTxtValor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jFmtData = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -77,7 +78,7 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
             }
         });
 
-        jLabel2.setText("Data de Nascimento");
+        jLabel2.setText("Valor");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,8 +91,8 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
                 .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                         .addComponent(jBtnConsultar)
                         .addGap(34, 34, 34))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -108,7 +109,7 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnConsultar)
-                    .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 13, Short.MAX_VALUE))
         );
 
@@ -144,27 +145,26 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
-    List lista = rtaUsuarios_DAO.listAll();
-    usuariosController.setList(lista);
-    } else {
-    if (!jTxtNome.getText().equals("") && !jFmtData.getText().equals("")) {
-        Date data = Util.strDate(jFmtData.getText());
-        List lista = rtaUsuarios_DAO.listNomeData(jTxtNome.getText(), data);
-        usuariosController.setList(lista);
-    } else {
-        if (!jTxtNome.getText().equals("")) {
-            List lista = rtaUsuarios_DAO.listNome(jTxtNome.getText());
-            usuariosController.setList(lista);
+if(!jTxtNome.getText().equals("")){
+        List lista=  rtaProduto_DAO.listNome(jTxtNome.getText());
+        produtosController.setList(lista);
+} else{
+    if (jTxtNome.getText().equals("") && jTxtValor.getText().equals("")){
+         List list =  rtaProduto_DAO.listNomeValor((Util.strDouble(jTxtValor.getText())), jTxtNome.getText());
+         produtosController.setList(list);
         }
-        if (!jFmtData.getText().equals("")) {
-            // Remova a conversão para double, utilize diretamente o método StrDate
-            Date data = Util.strDate(jFmtData.getText());
-            List lista = rtaUsuarios_DAO.listData(data);
-            usuariosController.setList(lista);
         }
-    }
-}
+if (jTxtValor.getText().equals("")&& jTxtNome.getText().equals("") ){
+         List lista =  rtaProduto_DAO.listValor ((Util.strDouble(jTxtValor.getText())));
+         produtosController.setList(lista);
+         }
+
+else{
+if (!jTxtValor.getText().equals("")){
+         List lista =  rtaProduto_DAO.listValor((Util.strDouble(jTxtValor.getText())));
+         produtosController.setList(lista);
+             }
+        }
     }//GEN-LAST:event_jBtnConsultarActionPerformed
 
     /**
@@ -184,20 +184,21 @@ if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgConsultaUsuarios dialog = new JDlgConsultaUsuarios(new javax.swing.JFrame(), true);
+                JDlgConsultaProdutos dialog = new JDlgConsultaProdutos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -211,7 +212,6 @@ if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsultar;
-    private javax.swing.JFormattedTextField jFmtData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -220,5 +220,6 @@ if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTxtNome;
+    private javax.swing.JTextField jTxtValor;
     // End of variables declaration//GEN-END:variables
 }

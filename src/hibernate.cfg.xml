@@ -48,7 +48,7 @@ Contributor(s):
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password"></property>
     
-    <!--property name="hibernate.connection.url">jdbc:mysql://10.0.7.51:33062/db_raul_torres?zeroDateTimeBehavior=convertToNull</property>
+    <!--property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_raul_torres?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">raul_torres</property>
     <property name="hibernate.connection.password">raul_torres</property-->
     

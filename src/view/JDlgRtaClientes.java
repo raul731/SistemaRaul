@@ -25,7 +25,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
      private boolean incluindo;
      RtaCliente rtaCliente;
      RtaClientes_DAO rtaClientes_DAO;
-     MaskFormatter mascaraCPF, mascaraTelefone, mascaraCelular, mascaraRg;
+     MaskFormatter mascaraCPF, mascaraTelefone, mascaraCelular, mascaraRg, mascaraData;
     
     /**
      * Creates new form JDglRtaClientes
@@ -33,7 +33,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
     public JDlgRtaClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Util.habilitar(false,jBtnCancelar,jBtnConfirmar,jTxtNome,jFmtCep,jFmtCpf,jFmtRg,jTxtBairro,jTxtEndereco,jTxtRua,jTxtNumRua,jTxtComple,jCboPais,jFmtTel,jFmtCelular,jCboEstadoC,jtxtGenero,jTxtCodigo );
+        Util.habilitar(false,jBtnCancelar,jBtnConfirmar,jTxtNome,jFmtCep,jFmtCpf,jFmtRg,jTxtBairro,jTxtEndereco,jTxtRua,jTxtNumRua,jTxtComple,jCboPais,jFmtTel,jFmtCelular,jCboEstadoC,jtxtGenero,jTxtCodigo, jFmtData );
         Util.habilitar(true, jBtnIncluir,jBtnAlterar,jBtnPesq);      
         setTitle("Cliente");
         setLocationRelativeTo(null);
@@ -44,6 +44,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
             mascaraTelefone = new MaskFormatter("(##)# ####-####");
             mascaraCelular = new MaskFormatter("(##)#####-####");
             mascaraRg = new MaskFormatter("##.###.###-#");
+             mascaraData = new MaskFormatter("##/##/####");
         } catch (ParseException ex) {
             Logger.getLogger(JDlgRtaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,7 +52,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         jFmtTel.setFormatterFactory(new DefaultFormatterFactory(mascaraTelefone));
         jFmtCelular.setFormatterFactory(new DefaultFormatterFactory(mascaraCelular));
         jFmtRg.setFormatterFactory(new DefaultFormatterFactory(mascaraRg));
-     
+      jFmtData.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
     }
     
     public RtaCliente viewBean(){
@@ -72,6 +73,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         rtaCliente.setRtaTelefone(jFmtTel.getText());
         rtaCliente.setRtaEstadoCivil(jCboEstadoC.getSelectedIndex());
         rtaCliente.setRtaEndereco(jTxtEndereco.getText());
+         rtaCliente.setRtaDataNascimento(Util.strDate(jFmtData.getText()));
 
          return this.rtaCliente;
     }
@@ -93,6 +95,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         jFmtTel.setText(rtaCliente.getRtaTelefone());
         jCboEstadoC.setSelectedIndex(rtaCliente.getRtaEstadoCivil());
         jTxtEndereco.setText(rtaCliente.getRtaEndereco());
+         jFmtData.setText(Util.datestr(rtaCliente.getRtaDataNascimento()));
 
       
     }
@@ -143,6 +146,8 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         jFmtTel = new javax.swing.JFormattedTextField();
         jFmtCelular = new javax.swing.JFormattedTextField();
         jFmtRg = new javax.swing.JFormattedTextField();
+        jFmtData = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -321,6 +326,8 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setText("Data Nascimenro");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -351,8 +358,6 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(endere)
-                                    .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bairro)
                                     .addComponent(comple)
                                     .addComponent(jTxtComple, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(genero)
@@ -363,10 +368,18 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                                     .addComponent(jCboEstadoC, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(jFmtCelular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(jFmtTel, javax.swing.GroupLayout.Alignment.LEADING))))
+                                        .addComponent(jFmtTel, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(bairro))
+                                        .addGap(49, 49, 49)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jTxtNumRua, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(endere1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 131, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -375,9 +388,13 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bairro)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bairro)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -514,7 +531,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         else{
             rtaClientes_DAO.update(rtaCliente);               
             }
-        Util.limparCampos(jTxtBairro,jTxtCodigo, jTxtNome, jFmtCelular, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCboEstadoC,jFmtTel,jTxtRua,jTxtNumRua,jTxtComple,jtxtGenero,jTxtEndereco);
+        Util.limparCampos(jTxtBairro,jTxtCodigo, jTxtNome, jFmtCelular, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCboEstadoC,jFmtTel,jTxtRua,jTxtNumRua,jTxtComple,jtxtGenero,jTxtEndereco, jFmtData);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesq);
         Util.habilitar(false, jTxtBairro,jTxtCodigo, jTxtNome, jFmtCelular, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCboEstadoC,jFmtTel,jTxtRua,jTxtNumRua,jTxtComple,jtxtGenero,jTxtEndereco, jBtnConfirmar, jBtnCancelar);
    
@@ -522,7 +539,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         Util.mensagem("Operação cancelada");
-        Util.limparCampos(jTxtBairro,jTxtCodigo, jTxtNome, jFmtCelular, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCboEstadoC,jFmtTel,jTxtRua,jTxtNumRua,jTxtComple,jtxtGenero,jTxtEndereco);
+        Util.limparCampos(jTxtBairro,jTxtCodigo, jTxtNome, jFmtCelular, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCboEstadoC,jFmtTel,jTxtRua,jTxtNumRua,jTxtComple,jtxtGenero,jTxtEndereco, jFmtData);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesq);
         Util.habilitar(false, jTxtBairro,jTxtCodigo, jTxtNome, jFmtCelular, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCboEstadoC,jFmtTel,jTxtRua,jTxtNumRua,jTxtComple,jtxtGenero,jTxtEndereco, jBtnConfirmar, jBtnCancelar);
    
@@ -611,9 +628,11 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField jFmtCelular;
     private javax.swing.JTextField jFmtCep;
     private javax.swing.JFormattedTextField jFmtCpf;
+    private javax.swing.JFormattedTextField jFmtData;
     private javax.swing.JFormattedTextField jFmtRg;
     private javax.swing.JFormattedTextField jFmtTel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTxtBairro;
     private javax.swing.JTextField jTxtCodigo;

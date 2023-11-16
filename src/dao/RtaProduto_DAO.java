@@ -6,6 +6,7 @@
 package dao;
 
 import bean.RtaProdutos;
+import bean.RtaProdutos;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -58,7 +59,38 @@ List lista = criteria.list();                                   //seria o msm qu
 session.getTransaction().commit();
 return (ArrayList) lista;
 }
+ public List listNome(String nome){
+        
+         session.beginTransaction();
+    Criteria crit = session.createCriteria(RtaProdutos.class);
+crit.add(Restrictions.like("rtaNome", "%"+nome+"%"));
+List lista = crit.list();
+  session.getTransaction().commit();
+return lista;
+    
+    }
+    public List listValor(double valor){
 
+         session.beginTransaction();
+    Criteria crit = session.createCriteria(RtaProdutos.class);
+crit.add(Restrictions.gt("rtaValor",new Double(valor)));
+List lista = crit.list();
+  session.getTransaction().commit();
+return lista;
+    
+    }
+      public List listNomeValor(double valor, String nome){
+        
+         session.beginTransaction();
+    Criteria crit = session.createCriteria(RtaProdutos.class);
+    crit.add(Restrictions.gt("rtaValor",new Double(valor)));
+    crit.add(Restrictions.like("rtaNome", "%"+nome+"%"));
+
+List lista = crit.list();
+  session.getTransaction().commit();
+return lista;
+    
+    }
 }
  
 

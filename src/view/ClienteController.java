@@ -20,6 +20,7 @@ public class ClienteController extends AbstractTableModel {
 
     public void setList(List lista) {
         this.lista = lista;
+           this.fireTableDataChanged();
     }
    
     public RtaCliente getBean(int row) {
