@@ -215,6 +215,11 @@ public class JFrmRtaPrincipal extends javax.swing.JFrame {
 
         jMnuVendas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         jMnuVendas.setText("Vendas");
+        jMnuVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuVendasActionPerformed(evt);
+            }
+        });
         jMnuMovimentos.add(jMnuVendas);
 
         jMenuBar1.add(jMnuMovimentos);
@@ -363,6 +368,12 @@ public class JFrmRtaPrincipal extends javax.swing.JFrame {
     jDlgConsultaProdutos.setVisible(true);
         
     }//GEN-LAST:event_jMenuCProdutoActionPerformed
+
+    private void jMnuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuVendasActionPerformed
+    JDlgRtaVendas jDlgRtaVendas = new JDlgRtaVendas(null,true);
+    jDlgRtaVendas.setVisible(true);
+
+    }//GEN-LAST:event_jMnuVendasActionPerformed
 
    
     /**

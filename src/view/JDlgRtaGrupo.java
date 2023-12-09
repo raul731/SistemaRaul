@@ -158,6 +158,17 @@ public class JDlgRtaGrupo extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
+        jDlgRtaGrupoIA.setTitle("Alterar");
+        
+        
+        int sel = jTable1.getSelectedRow();
+       rtaGrupo = grupoController.getBean(sel);
+         jDlgRtaGrupoIA.beanView(rtaGrupo);
+        
+         jDlgRtaGrupoIA.setVisible(true);
+         List lista = rtaGrupo_DAO.listAll();
+        grupoController.setList(lista);
+        
         
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 

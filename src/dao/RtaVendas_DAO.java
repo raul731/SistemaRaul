@@ -8,6 +8,7 @@ package dao;
 import bean.RtaVendas;
 import bean.RtaVendasproduto;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -60,4 +61,37 @@ List lista = criteria.list();                                   //seria o msm qu
 session.getTransaction().commit();
 return (ArrayList) lista;
 }
+public List listData(Date data) {
+
+        session.beginTransaction();
+        Criteria crit = session.createCriteria(RtaVendas.class);
+        crit.add(Restrictions.eq("rtaData", data));
+        List lista = crit.list();
+        session.getTransaction().commit();
+        return lista;
+
+    }
+
+    public List listValor(double valor) {
+
+        session.beginTransaction();
+        Criteria crit = session.createCriteria(RtaVendas.class);
+        crit.add(Restrictions.gt("rtaValorTotal", new Double(valor)));
+        List lista = crit.list();
+        session.getTransaction().commit();
+        return lista;
+
+    }
+
+    public List listDataValor(Date data, double valor) {
+
+        session.beginTransaction();
+        Criteria crit = session.createCriteria(RtaVendas.class);
+        crit.add(Restrictions.eq("rtaData", data));
+        crit.add(Restrictions.gt("rtaValorTotal", new Double(valor)));
+        List lista = crit.list();
+        session.getTransaction().commit();
+        return lista;
+
+    }
 }

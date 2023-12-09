@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package query;
+import bean.RtaGrupo;
 import dao.RtaGrupo_DAO;
 import dao.RtaGrupo_DAO;
 import java.lang.String;
@@ -18,7 +19,7 @@ import view.JDlgRtaGrupo;
  * @author u10154925179
  */
 public class JDlgConsultaGrupo extends javax.swing.JDialog {
-private JDlgRtaGrupo jDlgRtaGrupo;
+public RtaGrupo grupo;
     RtaGrupo_DAO rtaGrupo_DAO;
     GrupoController grupoController;
     /**
@@ -145,25 +146,24 @@ private JDlgRtaGrupo jDlgRtaGrupo;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-if(!jTxtDesc.getText().equals("")){
-        List lista=  rtaGrupo_DAO.listDesc(jTxtDesc.getText());
-        grupoController.setList(lista);
-} else{
-    if (jTxtDesc.getText().equals("") && jTxtQuant.getText().equals("")){
-         List list =  rtaGrupo_DAO.listDescQuantidade((Util.strDouble(jTxtQuant.getText())), jTxtDesc.getText());
-         grupoController.setList(list);
-        }
-        }
-if (jTxtQuant.getText().equals("")&& jTxtDesc.getText().equals("") ){
-         List lista =  rtaGrupo_DAO.listQuantidade ((Util.strDouble(jTxtQuant.getText())));
-         grupoController.setList(lista);
-         }
-
-else{
-if (!jTxtQuant.getText().equals("")){
-         List lista =  rtaGrupo_DAO.listQuantidade((Util.strDouble(jTxtQuant.getText())));
-         grupoController.setList(lista);
-             }
+ if (jTxtQuant.getText().equals("") && jTxtDesc.getText().equals("")) {
+            List lista = rtaGrupo_DAO.listAll();
+           grupoController.setList(lista);
+        } else {
+            if (!jTxtQuant.getText().equals("") && !jTxtDesc.getText().equals("")) {
+                List lista = rtaGrupo_DAO.listDescQuantidade(Util.strDouble(jTxtQuant.getText()), jTxtDesc.getText());
+                grupoController.setList(lista);
+            } else {
+                if (!jTxtDesc.getText().equals("")) {
+                    List lista = rtaGrupo_DAO.listDesc(jTxtDesc.getText());
+                    grupoController.setList(lista);
+                } else {
+                    if (!jTxtQuant.getText().equals("")) {
+                        List lista =rtaGrupo_DAO.listQuantidade(Util.strDouble(jTxtQuant.getText()));
+                        grupoController.setList(lista);
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_jBtnConsultarActionPerformed
 

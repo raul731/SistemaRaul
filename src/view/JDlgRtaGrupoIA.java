@@ -193,12 +193,16 @@ public class JDlgRtaGrupoIA extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-         setVisible(false);
-         rtaGrupo = viewBean();
-              
-         rtaGrupo_DAO.insert(rtaGrupo);
-   
-         Util.limparCampos(); 
+          rtaGrupo = viewBean();
+       RtaGrupo_DAO rtaGrupo_DAO = new RtaGrupo_DAO();
+        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+          rtaGrupo_DAO.insert(rtaGrupo);
+        } else {            
+          rtaGrupo_DAO.update(rtaGrupo);
+        }
+       
+
+        setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed

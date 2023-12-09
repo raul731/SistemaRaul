@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package query;
+import bean.RtaProdutos;
 import dao.RtaProduto_DAO;
 import dao. RtaProduto_DAO;
 import java.lang.String;
@@ -18,7 +19,7 @@ import view.UsuariosController;
  * @author u10154925179
  */
 public class JDlgConsultaProdutos extends javax.swing.JDialog {
-private JDlgRtaProdutos jDlgRtaProdutos;
+private RtaProdutos produtos;
     RtaProduto_DAO rtaProduto_DAO;
     ProdutosController produtosController;
     /**
@@ -27,7 +28,7 @@ private JDlgRtaProdutos jDlgRtaProdutos;
     public JDlgConsultaProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
          initComponents();
-         setTitle("Consulta de Usuarios");
+         setTitle("Consulta de Produtos");
         setLocationRelativeTo(null);
         
          rtaProduto_DAO = new  RtaProduto_DAO();
@@ -145,25 +146,24 @@ private JDlgRtaProdutos jDlgRtaProdutos;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-if(!jTxtNome.getText().equals("")){
-        List lista=  rtaProduto_DAO.listNome(jTxtNome.getText());
-        produtosController.setList(lista);
-} else{
-    if (jTxtNome.getText().equals("") && jTxtValor.getText().equals("")){
-         List list =  rtaProduto_DAO.listNomeValor((Util.strDouble(jTxtValor.getText())), jTxtNome.getText());
-         produtosController.setList(list);
-        }
-        }
-if (jTxtValor.getText().equals("")&& jTxtNome.getText().equals("") ){
-         List lista =  rtaProduto_DAO.listValor ((Util.strDouble(jTxtValor.getText())));
-         produtosController.setList(lista);
-         }
-
-else{
-if (!jTxtValor.getText().equals("")){
-         List lista =  rtaProduto_DAO.listValor((Util.strDouble(jTxtValor.getText())));
-         produtosController.setList(lista);
-             }
+ if (jTxtValor.getText().equals("") && jTxtNome.getText().equals("")) {
+            List lista = rtaProduto_DAO.listAll();
+           produtosController.setList(lista);
+        } else {
+            if (!jTxtValor.getText().equals("") && !jTxtNome.getText().equals("")) {
+                List lista = rtaProduto_DAO.listNomeValor(Util.strDouble(jTxtValor.getText()), jTxtNome.getText());
+                produtosController.setList(lista);
+            } else {
+                if (!jTxtNome.getText().equals("")) {
+                    List lista = rtaProduto_DAO.listNome(jTxtNome.getText());
+                    produtosController.setList(lista);
+                } else {
+                    if (!jTxtValor.getText().equals("")) {
+                        List lista =rtaProduto_DAO.listValor(Util.strDouble(jTxtValor.getText()));
+                        produtosController.setList(lista);
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_jBtnConsultarActionPerformed
 

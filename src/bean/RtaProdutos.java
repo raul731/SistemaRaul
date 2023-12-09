@@ -93,7 +93,19 @@ public class RtaProdutos  implements java.io.Serializable {
     public void setRtaDescricao(String rtaDescricao) {
         this.rtaDescricao = rtaDescricao;
     }
-
+@Override
+    public String toString(){
+    return this.getRtaNome();
+    }
+    @Override
+    public boolean equals (Object object){
+    if(object instanceof RtaProdutos){
+      RtaProdutos produtos = (RtaProdutos) object;
+    if(this.getIdrtaProdutos()==produtos.getIdrtaProdutos()){
+    return true;
+    } }
+    return false;
+}
 
 
 

@@ -6,6 +6,7 @@
 package dao;
 
 import bean.RtaUsuarios;
+import bean.RtaVendas;
 import bean.RtaVendasproduto;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,15 @@ import org.hibernate.criterion.Restrictions;
  */
 public class RtaVendasProduto_DAO extends DAO_Abstract{
 
+     public Object listProdutos(RtaVendas vendas) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(RtaVendasproduto.class);
+        criteria.add(Restrictions.eq("rtaVendas", vendas));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+     
     @Override
     public void insert(Object object) {
       session.beginTransaction();

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package query;
+import bean.RtaUsuarios;
 import dao.RtaUsuarios_DAO;
 import java.lang.String;
 import java.util.Date;
@@ -17,7 +18,7 @@ import view.UsuariosController;
  * @author u10154925179
  */
 public class JDlgConsultaUsuarios extends javax.swing.JDialog {
-private JDlgRtaUsuarios jDlgRtaUsuarios;
+public RtaUsuarios usuarios;
     RtaUsuarios_DAO rtaUsuarios_DAO;
     UsuariosController usuariosController;
     /**
@@ -144,27 +145,28 @@ private JDlgRtaUsuarios jDlgRtaUsuarios;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
-    List lista = rtaUsuarios_DAO.listAll();
-    usuariosController.setList(lista);
-    } else {
-    if (!jTxtNome.getText().equals("") && !jFmtData.getText().equals("")) {
-        Date data = Util.strDate(jFmtData.getText());
-        List lista = rtaUsuarios_DAO.listNomeData(jTxtNome.getText(), data);
-        usuariosController.setList(lista);
-    } else {
-        if (!jTxtNome.getText().equals("")) {
-            List lista = rtaUsuarios_DAO.listNome(jTxtNome.getText());
+  
+        if (jTxtNome.getText().equals("") && jFmtData.getText().equals("")) {
+            List lista = rtaUsuarios_DAO.listAll();
             usuariosController.setList(lista);
+        } else {
+            if (!jTxtNome.getText().equals("") && !jFmtData.getText().equals("")) {
+                Date data = Util.strDate(jFmtData.getText());
+                List lista = rtaUsuarios_DAO.listNomeData(jTxtNome.getText(), data);
+                usuariosController.setList(lista);
+            } else {
+                if (!jTxtNome.getText().equals("")) {
+                    List lista = rtaUsuarios_DAO.listNome(jTxtNome.getText());
+                    usuariosController.setList(lista);
+                } else {
+                    if (!jFmtData.getText().equals("")) {  
+                    Date data = Util.strDate(jFmtData.getText());
+                    List lista = rtaUsuarios_DAO.listData(data);
+                    usuariosController.setList(lista);
+                    }
+                }
+            }
         }
-        if (!jFmtData.getText().equals("")) {
-            // Remova a conversão para double, utilize diretamente o método StrDate
-            Date data = Util.strDate(jFmtData.getText());
-            List lista = rtaUsuarios_DAO.listData(data);
-            usuariosController.setList(lista);
-        }
-    }
-}
     }//GEN-LAST:event_jBtnConsultarActionPerformed
 
     /**

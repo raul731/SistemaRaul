@@ -132,7 +132,19 @@ public class RtaUsuarios  implements java.io.Serializable {
         this.rtaAtivo = rtaAtivo;
     }
 
-
+@Override
+    public String toString(){
+    return this.getRtaNome();
+    }
+    @Override
+    public boolean equals (Object object){
+    if(object instanceof RtaUsuarios){
+      RtaUsuarios usuarios = (RtaUsuarios) object;
+    if(this.getIdrtaUsuarios()==usuarios.getIdrtaUsuarios()){
+    return true;
+    } }
+    return false;
+}
 
 
 

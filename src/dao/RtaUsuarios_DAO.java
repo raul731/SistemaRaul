@@ -89,4 +89,13 @@ return lista;
         return lista;
     }
 
+    public RtaUsuarios login(String usuarios, String senha){
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(RtaUsuarios.class);
+    criteria.add(Restrictions.eq("drfNome", usuarios));
+    criteria.add(Restrictions.eq("drfSenha", senha));
+    RtaUsuarios usuarioAprovado = (RtaUsuarios) criteria.uniqueResult();
+    session.getTransaction().commit();
+        return usuarioAprovado;
+    }
 }

@@ -223,7 +223,19 @@ public class RtaCliente  implements java.io.Serializable {
         this.rtaDataNascimento = rtaDataNascimento;
     }
 
-
+@Override
+    public String toString(){
+    return this.getRtaNome();
+    }
+    @Override
+    public boolean equals (Object object){
+    if(object instanceof RtaCliente){
+      RtaCliente cliente = (RtaCliente) object;
+    if(this.getIdrtaCliente()==cliente.getIdrtaCliente()){
+    return true;
+    } }
+    return false;
+}
 
 
 

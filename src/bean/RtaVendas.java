@@ -59,7 +59,7 @@ public class RtaVendas  implements java.io.Serializable {
         this.idrtaVendas = idrtaVendas;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="rta_FKCliente", nullable=false)
     public RtaCliente getRtaCliente() {
         return this.rtaCliente;
@@ -69,7 +69,7 @@ public class RtaVendas  implements java.io.Serializable {
         this.rtaCliente = rtaCliente;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="rta_FKUsuarios", nullable=false)
     public RtaUsuarios getRtaUsuarios() {
         return this.rtaUsuarios;

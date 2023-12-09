@@ -161,8 +161,16 @@ if (Util.perguntar("Deseja execluir o registro") == true) {
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        jDlgRtaProdutosIA.setTitle("Alteração");
-        jDlgRtaProdutosIA.setVisible(true);
+       jDlgRtaProdutosIA.setTitle("Alterar");
+        
+        
+        int sel = jTable1.getSelectedRow();
+       rtaProdutos = produtosController.getBean(sel);
+         jDlgRtaProdutosIA.beanView(rtaProdutos);
+        
+         jDlgRtaProdutosIA.setVisible(true);
+         List lista = rtaProduto_DAO.listAll();
+        produtosController.setList(lista);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     /**

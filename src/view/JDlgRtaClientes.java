@@ -25,7 +25,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
      private boolean incluindo;
      RtaCliente rtaCliente;
      RtaClientes_DAO rtaClientes_DAO;
-     MaskFormatter mascaraCPF, mascaraTelefone, mascaraCelular, mascaraRg, mascaraData;
+     MaskFormatter mascaraCPF, mascaraTelefone, mascaraCelular, mascaraRg, mascaraData,mascaraCEP;
     
     /**
      * Creates new form JDglRtaClientes
@@ -34,7 +34,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         Util.habilitar(false,jBtnCancelar,jBtnConfirmar,jTxtNome,jFmtCep,jFmtCpf,jFmtRg,jTxtBairro,jTxtEndereco,jTxtRua,jTxtNumRua,jTxtComple,jCboPais,jFmtTel,jFmtCelular,jCboEstadoC,jtxtGenero,jTxtCodigo, jFmtData );
-        Util.habilitar(true, jBtnIncluir,jBtnAlterar,jBtnPesq);      
+        Util.habilitar(true, jBtnIncluir,jBtnAlterar,jBtnPesq,jBtnExcluir);      
         setTitle("Cliente");
         setLocationRelativeTo(null);
         rtaClientes_DAO = new RtaClientes_DAO();
@@ -44,15 +44,17 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
             mascaraTelefone = new MaskFormatter("(##)# ####-####");
             mascaraCelular = new MaskFormatter("(##)#####-####");
             mascaraRg = new MaskFormatter("##.###.###-#");
-             mascaraData = new MaskFormatter("##/##/####");
+            mascaraCEP = new MaskFormatter("#####-###");
+            mascaraData = new MaskFormatter("##/##/####");
         } catch (ParseException ex) {
             Logger.getLogger(JDlgRtaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
         jFmtCpf.setFormatterFactory(new DefaultFormatterFactory(mascaraCPF));
         jFmtTel.setFormatterFactory(new DefaultFormatterFactory(mascaraTelefone));
         jFmtCelular.setFormatterFactory(new DefaultFormatterFactory(mascaraCelular));
-        jFmtRg.setFormatterFactory(new DefaultFormatterFactory(mascaraRg));
-      jFmtData.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
+        jFmtCep.setFormatterFactory(new DefaultFormatterFactory(mascaraCEP));
+         jFmtRg.setFormatterFactory(new DefaultFormatterFactory(mascaraRg));
+         jFmtData.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
     }
     
     public RtaCliente viewBean(){
@@ -113,7 +115,6 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         jTxtNome = new javax.swing.JTextField();
         cpf = new javax.swing.JLabel();
         pais = new javax.swing.JLabel();
-        jFmtCep = new javax.swing.JTextField();
         Cep = new javax.swing.JLabel();
         RG = new javax.swing.JLabel();
         rua = new javax.swing.JLabel();
@@ -148,6 +149,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         jFmtRg = new javax.swing.JFormattedTextField();
         jFmtData = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
+        jFmtCep = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -162,12 +164,6 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
         cpf.setText("cpf");
 
         pais.setText("Pais");
-
-        jFmtCep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFmtCepActionPerformed(evt);
-            }
-        });
 
         Cep.setText("CEP");
 
@@ -295,7 +291,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                 .addComponent(jBtnCancelar)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnPesq)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,7 +322,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Data Nascimenro");
+        jLabel2.setText("Data Nascimento");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -338,48 +334,44 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(RG)
-                                    .addComponent(pais)
-                                    .addComponent(jFmtCep, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(Cep)
-                                    .addComponent(rua)
-                                    .addComponent(jTxtRua, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(nome)
-                                    .addComponent(jTxtNome)
-                                    .addComponent(cpf)
-                                    .addComponent(jCboPais, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jTxtCodigo)
-                                    .addComponent(jFmtCpf)
-                                    .addComponent(jFmtRg))
-                                .addGap(68, 68, 68)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(endere)
-                                    .addComponent(comple)
-                                    .addComponent(jTxtComple, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(genero)
-                                    .addComponent(cell)
-                                    .addComponent(tell)
-                                    .addComponent(jtxtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTxtEstadoC)
-                                    .addComponent(jCboEstadoC, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jFmtCelular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(jFmtTel, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bairro))
-                                        .addGap(49, 49, 49)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(RG)
+                                .addComponent(pais)
+                                .addComponent(Cep)
+                                .addComponent(rua)
+                                .addComponent(jTxtRua, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(nome)
+                                .addComponent(jTxtNome)
+                                .addComponent(cpf)
+                                .addComponent(jCboPais, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addComponent(jTxtCodigo)
+                                .addComponent(jFmtCpf)
+                                .addComponent(jFmtRg)
+                                .addComponent(jFmtCep))
                             .addComponent(jTxtNumRua, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(endere1))
-                        .addGap(0, 131, Short.MAX_VALUE)))
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(endere)
+                            .addComponent(comple)
+                            .addComponent(jTxtComple, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(genero)
+                            .addComponent(cell)
+                            .addComponent(tell)
+                            .addComponent(jtxtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtEstadoC)
+                            .addComponent(jCboEstadoC, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jFmtCelular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(jFmtTel, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bairro)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jFmtData, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTxtEndereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                        .addGap(0, 330, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -388,13 +380,9 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bairro)
-                            .addComponent(jLabel2))
+                        .addComponent(bairro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTxtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -443,16 +431,23 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
                         .addComponent(jCboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
                         .addComponent(Cep)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFmtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFmtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
                         .addComponent(rua)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTxtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(endere1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtNumRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(endere1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtNumRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -463,10 +458,6 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
     private void jTxtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtNomeActionPerformed
-
-    private void jFmtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtCepActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFmtCepActionPerformed
 
     private void jTxtRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtRuaActionPerformed
         // TODO add your handling code here:
@@ -493,7 +484,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_jCboEstadoCActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-        Util.habilitar(true, jTxtBairro,jTxtCodigo, jTxtNome, jFmtCelular, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCboEstadoC,jFmtTel,jTxtRua,jTxtNumRua,jTxtComple,jtxtGenero,jTxtEndereco, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jTxtBairro,jTxtCodigo, jTxtNome, jFmtCelular, jFmtCpf, jFmtCep,jFmtRg, jCboPais,jCboEstadoC,jFmtTel,jTxtRua,jTxtNumRua,jTxtComple,jtxtGenero,jTxtEndereco,jFmtData, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesq);
         incluindo = true;
 
@@ -626,7 +617,7 @@ public class JDlgRtaClientes extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jCboEstadoC;
     private javax.swing.JComboBox<String> jCboPais;
     private javax.swing.JFormattedTextField jFmtCelular;
-    private javax.swing.JTextField jFmtCep;
+    private javax.swing.JFormattedTextField jFmtCep;
     private javax.swing.JFormattedTextField jFmtCpf;
     private javax.swing.JFormattedTextField jFmtData;
     private javax.swing.JFormattedTextField jFmtRg;

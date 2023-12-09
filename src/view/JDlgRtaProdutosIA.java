@@ -210,11 +210,16 @@ public class JDlgRtaProdutosIA extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
+         rtaProdutos = viewBean();
+       RtaProduto_DAO rtaProduto_DAO = new RtaProduto_DAO();
+        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+          rtaProduto_DAO.insert(rtaProdutos);
+        } else {            
+          rtaProduto_DAO.update(rtaProdutos);
+        }
+       
+
         setVisible(false);
-        rtaProdutos = viewBean();
-        rtaProduto_DAO = new RtaProduto_DAO();
-        rtaProduto_DAO.insert(rtaProdutos);
-        Util.limparCampos(jTxtId,jTxtDesc,jTxtNome,jTxtPreco);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     private void jTxtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtIdActionPerformed

@@ -6,6 +6,8 @@
 package view;
 
 
+import bean.RtaUsuarios;
+import dao.RtaUsuarios_DAO;
 import javax.swing.JOptionPane;
 import tools.Util;
 import view.*;
@@ -26,11 +28,11 @@ public class JFrmLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
  JFrmLogin(boolean b) {
-       //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     JFrmLogin(Object object, boolean b) {
-       //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
   
@@ -129,20 +131,24 @@ public class JFrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEntrarActionPerformed
-       if(jTxtUsuario.getText().equals("raul_torres") && jPwfSenha.getText().equals("raul_torres") || jTxtUsuario.getText().equals("raul_torres") && jPwfSenha.getText().equals("raul_torres")){
-            JOptionPane.showMessageDialog(null, "Acesso Liberado");
-            JFrmRtaPrincipal jFrmDrfPrincipal = new JFrmRtaPrincipal();
-            jFrmDrfPrincipal.setVisible(true);
-        }else{
-           Util.limparCampos(jTxtUsuario, jPwfSenha);
-            JOptionPane.showMessageDialog(null, "Algo deu errado! Tente novamente, mudando sua senha ou user :(");
-       }
+      String usuario = jTxtUsuario.getText();
+        String senha = jPwfSenha.getText();
+        RtaUsuarios_DAO rtaUsuarios_DAO = new RtaUsuarios_DAO();
+        RtaUsuarios rtaUsuarios = rtaUsuarios_DAO.login(usuario, senha);
+
+        if (rtaUsuarios != null) {
+            JFrmRtaPrincipal jFrmRtaPrincipal = new JFrmRtaPrincipal();
+            jFrmRtaPrincipal.setVisible(true);
+        } else {
+            //System.out.println("O login ou senha estão incorretos");
+            Util.mensagem("O login ou senha estão incorretos :(");
+        }
     }//GEN-LAST:event_jBtnEntrarActionPerformed
 
     private void jBtnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSairActionPerformed
         System.exit(0);   
          jTxtUsuario.setText("");
-        jPwfSenha.setText("");// TODO add your handling code here:
+        jPwfSenha.setText("");
     }//GEN-LAST:event_jBtnSairActionPerformed
 
     private void jTxtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtUsuarioActionPerformed
